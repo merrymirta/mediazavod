@@ -1,0 +1,23 @@
+development:
+  adapter: mysql
+  database: mediazavod_publishing_production
+  username: root
+  password: 8P3ljjT8F7R6
+  host: localhost
+  encoding: utf8
+
+test:
+  adapter: mysql
+  database: chelrabochy_test
+  username: root
+  password:
+  host: localhost
+  encoding: utf8
+  
+production:
+  adapter: mysql
+  database: mediazavod_publishing_production
+  username: mediazavod
+  password: "nyWWp6JyLSq4hpcu"
+  host: localhost
+  encoding: utf8

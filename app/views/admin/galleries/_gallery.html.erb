@@ -1,0 +1,12 @@
+<div class="gallery">
+  <%= link_to(gallery.name, object_permit?(gallery, :edit) ? edit_admin_gallery_path(gallery) : gallery, :class => :name) %>
+
+  <div class="thumbs">
+    <%= pictures_for(gallery,
+          :format           => :preview_list,
+          :thumbnail_format => "x80"
+        ) %>
+  </div>
+
+  <%= render :partial => "admin/materials/meta", :locals => {:material => gallery} %>
+</div>

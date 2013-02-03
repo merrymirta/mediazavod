@@ -1,0 +1,61 @@
+<% remote_form_for [commentable, @comment || Comment.new], :html => { :id => comment_form_id(@comment)} do |form| %>
+  <%= less_reverse_captcha_field(:comment) %>
+
+  <% if form.object.parent %>
+    <h2><%= ""[:comments_form_header_reply] %></h2>
+    <%= hidden_field_tag :parent, form.object.parent.id %>
+  <% else%>
+    <h2><%= ""[:comments_form_header_new] %></h2>
+  <% end %>
+
+  <%= form.generic_field(:user,
+        content_tag(:div, "", :id => :current_user),
+        :label => ""[:comment_label_user]
+      ) %>
+
+  <div id='field_for_comment_anonymous_user'>
+    <%= form.text_field ""[:comment_label_user_name], :user_name, :required => true %>
+    <%= form.text_field ""[:comment_label_user_email], :user_email %>
+    <%= form.check_box ""[:comment_label_subscribe], :subscribe %>
+    <%= form.text_field ""[:comment_label_user_site], :user_site %>
+  </div>
+
+  <script type="text/javascript">
+    <% if form.object.parent %>
+      jQuery('#<%= dom_id(form.object.parent) %> .spinner').hide();
+    <% end %>
+
+    var user_id = document.cookie.split(/current_user_id=([0-9]+)/)[1];
+
+    if(user_id == undefined)
+    {
+      jQuery('#field_for_comment_user').hide();
+    } else {
+      jQuery('#current_user').load('/passport/users/' + user_id +'.inline?remote_format=general')
+      
+      jQuery('#field_for_comment_anonymous_user').hide();
+    };
+  </script>
+
+  <% markup_reference = capture do %>
+    <div class="markup_reference">
+      <div class="text" style="display:none;"><%= ""[:comments_form_markup_text] %></div>
+      <%= link_to_function(""[:comments_form_markup_link], "jQuery(this).toggleClass('expanded').prev('.text').slideToggle('fast')") %>
+    </div>
+    <div class="note">
+      Прежде, чем добавить комментарий, ознакомьтесь с
+      <%= link_to("правилами", "/info/comment_rules") %>
+    </div>
+  <% end %>
+
+  <%= form.text_area ""[:comment_label_text], :text , :required => true, :rows => 5, :before_field => markup_reference %>
+
+  <%= submit_tag_with_spinner ""[:comments_form_submit]%>
+
+  <% if form.object.parent %>
+    <%= link_to_function(""[:comments_form_close],
+          "jQuery('##{comment_form_id(@comment)}').remove()",
+          :class => :close_button
+        ) %>
+  <% end %>
+<% end %>

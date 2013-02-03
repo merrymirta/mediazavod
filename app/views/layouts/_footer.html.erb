@@ -1,0 +1,50 @@
+<div id="broker">
+  <%= link_broker %>
+</div>
+
+<div id="footer">
+  <div class="top"><div></div></div>
+  <div class="counters">
+    <noindex><%= render :partial => "layouts/counters" %></noindex>
+  </div>
+  <div class="left">
+    <div class="bottom_nav">
+      <% if yield(:footer_navigation).blank? %>
+        <% page_prefix = Rails.configuration.idfix.services[:publishing][:domain] + "/info" %>
+        <a href="<%= page_prefix %>/contacts">Контакты</a> |
+        <a href="<%= page_prefix %>/subscription">Подписка</a> |
+        <a href="<%= page_prefix %>/jobs">Вакансии </a> |
+        <%= link_to("<strong><em>Челябинск</em></strong>", root_url) %>
+      <% else %>
+        <%= yield(:footer_navigation) %>
+      <% end %>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2008 ЗАО «ЧР-Менеджер». Все права защищены.</p>
+      <p>При использовании информации ссылка на правообладателя обязательна.</p>
+      <p>Ответственность за содержание рекламных объявлений, размещенных на веб-сайте, несет рекламодатель.</p>
+      <p>По вопросам размещения рекламы обращайтесь <%= mail_to "ads@chelrabochy.ru", nil, :encode => "hex" %></p>
+      <p>По вопросам работы сайта обращайтесь <%= mail_to "dmitrykonoplev@chelrabochy.ru", nil, :encode => "hex" %></p>
+    </div>
+  </div>
+  <noindex>
+    <div class="developers">
+      Разработка сайта — <a href="http://railorz.ru">Алексей Дмитриев</a><br/>
+      Дизайн — <%= mail_to "a.vlasov14@gmail.com", "Андрей Власов", :encode => "hex" %><br/>
+      Продвижение сайта — <a href="http://www.expressdg.ru/index.php">Экспресс Дизайн Групп</a>
+    </div>
+    <div class="partners">
+      <strong>Партнеры:</strong> <br />
+      <a href="http://cheltv.ru/" target="_blank">
+        <img src="/images/partners/vesti.jpg" alt="Вести Южный Урал" width="120" height="60"/>
+      </a>
+      <a href="http://anri.org.ru/" target="_blank">
+        <img src="/images/partners/anri.gif" alt="Альянс независимых издателей" width="120" height="60"/>
+      </a>
+      <img src="/images/partners/paritet.gif" alt="Типография Паритет" width="120" height="60"/>
+    </div>
+  </div>
+</noindex>
+
+<!-- Metabar Sitebar -->
+<script type="text/javascript" charset="utf-8" src="http://mediazavod.metabar.ru/sitebar.js"></script>

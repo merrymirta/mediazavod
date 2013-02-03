@@ -1,0 +1,15 @@
+<% panel ""[:admin_materials_upload_archive_header], :main => true do %>
+  <% form_tag(nil, :multipart => true) do %>
+    <%= file_field_tag :archive %><br />
+    <%#-- сюда выбор каталога назначения -- %>
+    <p>
+      <%= radio_button_tag 'upload_to', "ug", false %>
+      <%= label_tag 'upload_to_ug', 'Урожайная газета' %> <br />
+
+      <%= radio_button_tag 'upload_to', "rabochy", true %>
+      <%= label_tag 'upload_to_rabochy', 'Челябинский рабочий' %> <br />
+
+    </p>
+    <%= submit_tag ""[:admin_materials_upload_archive_submit] %>
+  <% end %>
+<% end %>

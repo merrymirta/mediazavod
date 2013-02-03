@@ -1,0 +1,53 @@
+<%
+  metadata.title        = ["#{@section.name}: #{@date.strftime(""[:common_format_date])}", @section.meta_title].compact
+  metadata.description  = [@section.meta_description_or_name]
+  metadata.keywords     = [@section.meta_keywords_or_name]
+  
+  metadata.merge(
+    :javascripts  => ["jquery", "jquery.date.js", "jquery.date.ru.js", "jquery.datePicker.js"],
+    :additions    => javascript_tag("jQuery.noConflict()"),
+    :stylesheets  => "jquery.datePicker.css"
+  )
+%>
+
+<div class="section">
+  <div class="top">
+    <%= section_breadcrumbs(@section, :disable_for_root => false) %>
+
+    <div class="subscribe">
+      <%= link_to("RSS-подписка на этот раздел", formatted_section_articles_path(@section, :rss)) %>
+    </div>
+
+    <%= material_preview(@articles.first, :thumbnail_format => "185x144", :class => :top_article, :wrap_text => true) %>
+  </div>
+  
+  <div class="main_part">
+    <div class="articles">
+      <% @articles[1..-1].each do |article| %>
+        <%= material_preview(article, :thumbnail_format => "98x", :wrap_text => true) %>
+      <% end %>
+    </div>
+
+    <div class="shorties block">
+      <div class="h s1"><%= link_to("Лента новостей", section_shorties_path(@section)) %></div>
+      
+      <% @shorties.each do |shorty| %>
+        <%= shorty_preview(shorty) %>
+      <% end %>
+
+      <%= link_to("Архив новостей", section_shorties_path(@section), :class => :archive) %>
+
+      <%= banner_place(:shorties) %>
+    </div>
+  </div>
+</div>
+
+<% content_for :right_column do %>
+  <%= calendar_block(
+        :active_days    => @active_days,
+        :selected_date  => @date,
+        :start_date     => @active_days.last,
+        :end_date       => @active_days.first,
+        :binding_url    => url_for(:date => ":date")
+      ) %>
+<% end %>

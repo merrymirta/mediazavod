@@ -1,0 +1,47 @@
+<%
+  metadata.merge(
+    :title        => [@material.name, @material.tag_list.to_s],
+    :description  => [@material.name, @material.tag_list.to_s],
+    :keywords     => [@material.name, @material.tag_list.to_s]
+  )
+%>
+
+<% cache(@material.cache_key) do %>
+  <div class="top">
+    <div id="table_top_gallery">
+      <%= section_breadcrumbs(@material.section, :disable_for_root => false) %>
+
+      <div class="gallery">
+        <h1 class="title"><%= @material.name %></h1>
+
+        <%= gallery_meta(@material) %>
+
+        <div class="text">
+          <%= filter_content(radius_filter(@material.excerpt), @material.filter) %>
+        </div>
+
+        <%= pictures_for(@material,
+              :format           => :widget,
+              :thumbnail_format => "110x82",
+              :full_size_format => "600x600"
+            ) %>
+
+        <%= render :partial => "materials/share", :locals => {:material => @material} %>
+        
+        <%= user_info(@material.author, :remote_format => :general, :controls => false) %>
+      </div>
+
+      <% if previous_gallery = Gallery.publicated_before(@material).first %>
+        <div class="prev"><%= link_to("Предыдущая галерея", previous_gallery) %></div>
+      <% end %>
+
+      <% if next_gallery = Gallery.publicated_after(@material).first %>
+        <div class="next"><%= link_to("Следующая галерея", next_gallery) %></div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= comments_for(@material, :per_page => 20) if @material.allow_comments? %>
+
+<%= related_materials_for(@material) %>

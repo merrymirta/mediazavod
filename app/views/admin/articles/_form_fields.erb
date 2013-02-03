@@ -1,0 +1,46 @@
+<%= form.select(
+      material_translate(@type, :label_section),
+      :section_id,
+      Section.to_options_for_select,
+      :required => true
+    ) %>
+
+<%= form.text_field(
+      material_translate(@type, :label_name),
+      :name,
+      :required => true
+    ) %>
+
+<%= form.text_area(
+      material_translate(@type, :label_excerpt), 
+      :excerpt, 
+      :required => true, 
+      :rows => 5
+    ) %>
+
+<% fields_for("article[article_content]", form.object.article_content) do |c| %>
+  <%= c.text_area(
+        ""[:admin_article_contents_label_text],
+        :text,
+        :required => true
+      ) %>
+<% end %>
+
+<%= form.text_area(
+      material_translate(@type, :label_ya_news_text),
+      :ya_news_text
+    ) %>
+
+<%= form.select(
+      material_translate(@type, :label_author),
+      :author_id,
+	    User.find_by_role("writer").collect{|editor|
+				[editor.remote_user.full_name_or_login, editor.id]
+			},
+      :required => true
+    ) %>
+
+<%= form.tag_list_field(material_translate(@type, :label_tag_list), :tag_list) %>
+
+<%= form.text_field material_translate(@type, :label_source_name), :source_name %>
+<%= form.text_field material_translate(@type, :label_source_url), :source_url %>

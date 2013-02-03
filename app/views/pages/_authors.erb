@@ -1,0 +1,26 @@
+<% if section = Section.find_by_alias("authors") and
+      authors = Article.publicated_at_homepage.publicated_at_section(section).author_ids.find(:all) and
+      authors.any? %>
+  <% authors.collect!{|article| article.author } -%>
+
+  <div id="authors" class="panel v1">
+    <div class="title"><%= link_to(section.name, section) %></div>
+
+    <% authors.each do |author| %>
+      <% article = Article.publicated_at_homepage.publicated_at_section("authors").by_author(author).first -%>
+      <div class="author clearfix">
+        <%= user_info(article.author, :remote_format => :avatar) %>
+
+        <div class="text">
+          <%= link_to(user_info(article.author), article, :class => :name) %>
+
+          <div class="excerpt"><%= filter_content(article.excerpt, article.filter) %></div>
+
+          <%= article_meta(article, :tag_list => false) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= banner_place(:right_authors) %>
+<% end %>

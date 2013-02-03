@@ -1,0 +1,9 @@
+<% div_for(shorty) do %>
+  <%= link_to(shorty.name, object_permit?(shorty, :edit) ? edit_admin_shorty_path(shorty) : shorty, :class => :name) %>
+
+  <div class="excerpt">
+    <p><%= shorty.first_sentence_or_excerpt %></p>
+  </div>
+
+  <%= render :partial => "admin/materials/meta", :locals => {:material => shorty} %>
+<% end %>

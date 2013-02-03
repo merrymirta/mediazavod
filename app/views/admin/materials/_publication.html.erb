@@ -1,0 +1,13 @@
+<table class="publication">
+  <tr class="publicated_at">
+    <td class="label"><%= material_translate(@type, :label_publicated_at) %></td>
+    <td class="value"><%= datetime(material.publicated_at) %></td>
+  </tr>
+
+  <% %w(publicate_as_hot publicate_at_homepage publicate_at_section publicate_in_ya_news allow_comments allow_rating).each do |attribute| %>
+    <% content_tag(:tr, :class => attribute) do %>
+      <td class="label"><%= material_translate(@type, "label_#{attribute}".to_sym) %></td>
+      <td class="value"><%= icon(material.send(attribute) ? :accept : :decline) %></td>
+    <% end %>
+  <% end %>
+</table>

@@ -1,0 +1,43 @@
+#material_list td.controls {width: 200px;}
+#material_list .hidden_controls {width: 200px;margin-left: -185px;}
+
+#material_list .name {font-weight: bold;}
+#material_list .metadata {clear:both;}
+#material_list .metadata div {float:left;}
+#material_list .metadata .label {margin-right: 5px; font-size: 12px; font-weight: bold;}
+#material_list .metadata .value {margin-right: 15px; font-size: 12px;}
+
+#material_list .metadata .draft {color: #ff8800;}
+#material_list .metadata .pending {color: #ee00dd;}
+#material_list .metadata .publicated {color: green;}
+#material_list .metadata .deleted {color: red;}
+
+form.publicate label {font-weight: normal;}
+form.publicate .input {float: left; margin-top: -18px;}
+form.publicate .label {margin-left: 25px;}
+#field_for_article_comment_policy .input,
+#field_for_gallery_comment_policy .input {float:none; margin-top: 0;}
+#field_for_article_comment_policy .label,
+#field_for_gallery_comment_policy .label{margin-left: 0;}
+
+
+/* Articles */
+
+#material_list .article {margin-bottom: 5px; border: 0;}
+#material_list .article td {border: 0; padding: 0px;}
+#material_list .article td.picture {width:105px}
+#material_list .article td.picture img {border: 1px solid #c0c0c0;}
+
+#field_for_article_name input {width:99%;}
+#field_for_article_source_name input,
+#field_for_article_source_url input,
+#field_for_article_tag_list input {width: 50%;}
+
+/* Galleries */
+
+#material_list .gallery {margin-bottom: 5px;}
+#material_list .gallery div.picture {float:left; margin: 3px;}
+#material_list .gallery div.picture img {border: 1px solid #c0c0c0;}
+
+#field_for_article_name input {width:99%;}
+#field_for_shorty_excerpt textarea{height: 300px;}

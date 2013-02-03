@@ -1,0 +1,21 @@
+<% wrap_controls(article) do %>
+  <%= link_to(""[:admin_user_articles_controls_view], article,
+        :class  => :view,
+        :target => :_blank
+      ) if object_permit?(article, :view) %>
+
+  <%= link_to_remote(""[:admin_user_articles_controls_approve],
+        :url => [:approve, :admin, article],
+        :html=> {:class => :approve}
+      ) if object_permit?(article, :approve) %>
+
+  <%= link_to_remote(""[:admin_user_articles_controls_feature],
+        :url => [:feature, :admin, article],
+        :html=> {:class => :feature}
+      ) if object_permit?(article, :feature) %>
+
+  <%= link_to_remote(""[:admin_user_articles_controls_decline],
+        :url => [:decline, :admin, article],
+        :html=> {:class => :decline}
+      ) if object_permit?(article, :decline) %>
+<% end %>

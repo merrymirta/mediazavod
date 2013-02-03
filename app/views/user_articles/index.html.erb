@@ -1,0 +1,20 @@
+<%
+  metadata.merge(
+    :title => "Народная журналистика",
+    :description => "Народная журналистика, статьи пользователей"
+  )
+%>
+
+<% panel("Народная журналистика", :class => :articles, :main => true) do %>
+  <% if @articles.any? %>
+    <% @articles.each do |article| %>
+      <%= render :partial => "user_article", :locals => {:article => article} %>
+    <% end %>
+
+    <%= will_paginate @articles %>
+  <% else %>
+    <div class="empty_set">
+      <%= ""[:user_articles_index_articles_not_found] %>
+    </div>
+  <% end %>
+<% end %>

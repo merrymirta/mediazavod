@@ -1,0 +1,19 @@
+<% admin_panel(""[:admin_user_articles_index_header], :main => true) do %>
+
+  <% if @articles %>
+    <%= will_paginate(@articles) %>
+
+    <table id="user_article_list" cellspacing="0" cellpadding="0">
+      <% @articles.each do |article| %>
+        <tr>
+          <td class="info"><%= render :partial => "article", :locals => {:article => article} %></td>
+          <td class="controls"><%= render :partial => "controls", :locals => {:article => article} %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= will_paginate(@articles) %>
+  <% else %>
+    <div class="empty_set"><%= ""[:admin_user_articles_index_empty_set] %></div>
+  <% end %>
+<% end %>

@@ -1,0 +1,11 @@
+<% content_for :top_menu do %>
+  <% %w(draft pending publicated deleted).each do |state| %>
+    <%= link_to ""["admin_shorties_controls_#{state}".to_sym], admin_shorties_path(:state => state), :class => state %>
+  <% end %>
+
+  <%= link_to ""[:admin_shorties_controls_new], new_admin_shorty_path, :class => :new %>
+<% end %>
+
+<% inside_layout "layouts/admin/outer" do %>
+  <%= yield %>
+<% end %>

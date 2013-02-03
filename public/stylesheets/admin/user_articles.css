@@ -1,0 +1,4 @@
+#user_article_list td.controls {width: 100px;}
+
+#user_article_list .title {font-weight: bold;}
+#user_article_list .created_at {color: #d0d0d0; font-size: 12px;}

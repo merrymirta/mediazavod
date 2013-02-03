@@ -1,0 +1,16 @@
+<% panel ""[:blog_posts_drafts_header], :main => true do %>
+  <% if @posts.any? %>
+    <table>
+      <% @posts.each do |post| %>
+        <tr>
+          <td class="title"><%= link_to(h(post.title), [post.author, post]) %></td>
+          <td>
+            <%= render :partial => "controls", :locals => {:post => post} %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <div class="empty_set"><%= ""[:blog_posts_drafts_empty_set] %></div>
+  <% end %>
+<% end %>

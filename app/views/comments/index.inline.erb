@@ -1,0 +1,6 @@
+<div class="comments">
+  <% @comments.each do |comment| %>
+    <div class="commentable"><%= link_to(comment.commentable.name, polymorphic_url(comment.commentable)) %></div>
+    <%= show_comment(comment, :level => 0, :reply => false) %>
+  <% end %>
+</div>

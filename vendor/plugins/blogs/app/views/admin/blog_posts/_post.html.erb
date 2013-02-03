@@ -1,0 +1,8 @@
+<% content_tag_for :div, post do %>
+  <div class="title"><%= link_to(h(post.title), [:edit, :admin, post]) %></div>
+  <div class="created_at"><%= post.created_at.strftime(""[:common_format_datetime]) %></div>
+  <% unless post.excerpt.blank? %>
+    <div class="excerpt"><%= filter_content(post.content, Idfix::Markup::TEXTILE) %></div>
+  <% end %>
+  <div class="content"><%= filter_content(post.excerpt, Idfix::Markup::TEXTILE) %></div>
+<% end %>

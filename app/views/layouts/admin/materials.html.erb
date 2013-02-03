@@ -1,0 +1,61 @@
+<%
+  metadata.merge(:stylesheets => "admin/materials")
+%>
+<% content_for :sidebar_menu do %>
+  <% region :material_collection_controls do %>
+    <%= admin_menu_item(
+          link_to(material_translate(@type, :controls_new), new_polymorphic_path([:admin, @type.new]),
+            :class => :new
+          ),
+          %w{new create}.include?(params[:action])
+        ) if object_permit?(@type, :create) %>
+
+    <%= admin_menu_splitter %>
+    
+    <% if object_permit?(@type, :manage) %>
+      <% @type.states.each do |state| %>
+        <%= admin_menu_item(
+              link_to(
+                material_translate(@type, "controls_#{state}".to_sym),
+                polymorphic_path([:admin, @type.new]) + "?state=#{state}",
+                :class => state
+              ),
+              (params[:action] == "index" and state.to_s == filter_options[:state])
+            ) %>
+      <% end %>
+
+      <%= admin_menu_splitter %>
+
+      <% search_form = capture do %>
+        <% form_tag polymorphic_path([:admin, @type.new]), :method => :get do %>
+          № <%= text_field_tag :id, params[:id], :size => 6 %>
+          <%= submit_tag material_translate(@type, "controls_search".to_sym) %>
+        <% end %>
+      <% end %>
+
+      <%= admin_menu_item(search_form) %>
+    <% end %>
+
+    <%= admin_menu_splitter %>
+
+    <%= admin_menu_item(
+          link_to(material_translate(@type, :controls_upload_archive),
+            polymorphic_path([:upload_archive, :admin, Material.new])
+          ) 
+        ) if object_permit?(Material, :upload_archive) %>
+  <% end %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <% admin_sidebar_panel(""[:admin_materials_sidebar_calendar]) do %>
+    <%= calendar_block(
+          :active_days    => @type.active_days_filtered(filter_options),
+          :binding_url    => "#{request.path}?date=:date",
+          :selected_date  => filter_options[:date]
+        ) %>
+  <% end %>
+<% end %>
+
+<% render :layout => "layouts/admin/application" do %>
+  <%= yield %>
+<% end %>

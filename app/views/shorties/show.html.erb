@@ -1,0 +1,60 @@
+<%
+  metadata.merge(
+    :title        => @material.name,
+    :description  => @material.name,
+    :keywords     => @material.name
+  )
+%>
+
+<div class="top">
+  <table id="table_top_shorty">
+    <tr>
+      <td class="left">
+        <%= section_breadcrumbs(@material.section, :disable_for_root => false) %>
+
+        <div class="shorty">
+          <h1 class="title"><%= @material.name %></h1>
+
+          <% if @material.publicated? %>
+            <div class="date"><%= @material.publicated_at.strftime(""[:common_format_datetime])%></div>
+          <% end %>
+
+          <%= shorty_meta(@material) %>
+
+          <div class="text">
+            <%= filter_content(@material.excerpt, @material.filter) %>
+          </div>
+
+          <%= render :partial => "materials/share", :locals => {:material => @material} %>
+
+          <%= user_info(@material.author, :remote_format => :general, :controls => false) %>
+        </div>
+
+        <% if previous_shorty = Shorty.publicated_before(@material).first %>
+          <div class="prev"><%= link_to("Предыдущая новость", previous_shorty) %></div>
+        <% end %>
+
+        <% if next_shorty = Shorty.publicated_after(@material).first %>
+          <div class="next"><%= link_to("Следующая новость", next_shorty) %></div>
+        <% end %>
+      </td>
+      <td class="right">
+        <% if shorties = @material.section.shorties.publicated.except(@material).find(:all, :limit => 10) and shorties.any? %>
+          <div class="panel v1">
+            <div class="title">Новости раздела</div>
+
+            <div class="shorties">
+              <% shorties.each do |shorty| %>
+                <%= shorty_preview(shorty) %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<%= comments_for(@material, :per_page => 20) if @material.allow_comments? %>
+
+<%#= related_materials_for(@material) %>

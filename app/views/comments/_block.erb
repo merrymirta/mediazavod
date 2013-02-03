@@ -1,0 +1,21 @@
+<a name="comments"></a>
+
+<div id="comments" class="comments">
+  <%= banner_place(:comments_top) %>
+
+  <h2 class="title"><%= ""[:comments_block_header] %></h2>
+
+  <div class="tree">
+    <% if comments.any? %>
+      <%= will_paginate(comments, :params => {:anchor => :comments}) %>
+
+        <% Comment.recurse_result_set(comments) do |comment, level| %>
+          <%= show_comment(comment, :level => level) %>
+        <% end %>
+
+      <%= will_paginate(comments, :params => {:anchor => :comments}) %>
+    <% end %>
+  </div>
+        
+  <%= render :partial => "comments/form", :locals => {:commentable => commentable} %>
+</div>

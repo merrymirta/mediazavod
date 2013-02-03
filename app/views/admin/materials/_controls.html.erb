@@ -1,0 +1,28 @@
+<% wrap_controls material do %>
+  <% region :admin_material_controls, material do %>
+    <%= link_to(material_translate(@type, :controls_preview), material,
+          :class  => :preview,
+          :target => :_blank
+        ) if object_permit?(material, :manage) or material.publicated? %>
+
+    <%= picture_controls_for(:admin, material) %>
+    <%= asset_controls_for(:admin, material) %>
+    
+    <%= link_to(material_translate(@type, :controls_send_to_test), [:send_to_test, :admin, material],
+          :method => :post, 
+          :class => :send_to_test
+        ) if object_permit?(material, :send_to_test) %>
+
+    <%= modal_link_to(material_translate(@type, :controls_publicate), [:publicate, :admin, material],
+          :class  => :publicate
+        ) if object_permit?(material, :publicate) %>
+  <% end %>
+
+  <% hidden_controls do %>
+    <%= link_to(material_translate(@type, :controls_delete), [:admin, material],
+          :method => :delete,
+          :confirm => material_translate(@type, :delete_confirm),
+          :class => :delete
+        ) if object_permit?(material, :delete) %>
+  <% end %>
+<% end %>

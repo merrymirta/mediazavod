@@ -1,0 +1,4 @@
+<% content_tag_for :div, article do %>
+  <div class="title"><%= link_to(h(article.title), [:edit, :admin, article]) %></div>
+  <div class="created_at"><%= article.created_at.strftime(""[:common_format_datetime]) %></div>
+<% end %>

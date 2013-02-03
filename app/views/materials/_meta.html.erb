@@ -1,0 +1,9 @@
+<div class="metadata">
+  <% if options[:comments] and material.allow_comments? and material.comments.summary.total_count > 0  %>
+    <%= link_to(material.comments.summary.total_count, url_for(material) + "#comments", :class => :comments) %>
+  <% end %>
+
+  <% if options[:tag_list] and !material.tag_list.blank? %>
+    <%= tags_for(material) %>
+  <% end %>
+</div>

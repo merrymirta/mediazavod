@@ -1,0 +1,1 @@
+page["#user_article_list tr:has(##{dom_id(@article)})"].remove

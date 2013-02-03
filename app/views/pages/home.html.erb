@@ -1,0 +1,134 @@
+<%
+  metadata.title        = ["Mediazavod | Новости | Челябинск и Челябинская область"]
+  metadata.description  = ["Сайт информационного портала Медиа Завод в Челябинске. Новости Челябинска"]
+  metadata.keywords     = ["Челябинск, город Челябинск, г. Челябинск"]
+
+  metadata.merge(
+    :feeds => [
+      {
+        :name => ""[:pages_home_articles_feed],
+        :url  => formatted_articles_path(:rss)
+      },
+      {
+        :name => ""[:pages_home_shorties_feed],
+        :url  => formatted_shorties_path(:rss)
+      }
+    ]
+  )
+%>
+
+<div class="top">
+  <div class="top_article">
+    <div class="top">
+      <h1>Новость дня</h1>
+      <div class="subscription" id="main_subscription">
+        <b>Подписка</b>
+        <ul class="hidden">
+          <li><%= link_to("Уведомления по E-Mail", Rails.configuration.idfix.services[:passport][:domain] + "/subscriptions") %></li>
+          <li><%= link_to("RSS-лента", formatted_articles_path(:rss)) %></li>
+        </ul>
+      </div>
+      <div class="rss"></div>
+    </div>
+    <div class="excerpt">
+      <% first = @hot_articles.first %>
+      <% if first.pictures.first %>
+        <%= link_to(image_tag(first.pictures.first.image.url("373x"), :alt => first.name), 
+                    first.pictures.first.image.url,
+                    :rel => "prettyPhoto[pp_gal]",
+                    :title => first.pictures.first.name
+        ) %>
+      <% end %>
+      
+      <%= link_to(first.name, first, :class => :name) %>
+    </div>
+
+    <div class="text"><%= filter_content(first.excerpt, first.filter) %></div>
+    
+    <%= article_meta(first, :tag_list => false) %>
+
+  </div>
+  <div class="articles">
+    <div class="h s1"><%= link_to("События", articles_path) %></div>
+    <% @hot_articles[1..-1].each do |article| %>
+      <%= material_preview(article, :thumbnail_format => "80x", :meta => {:tag_list => false}) %>
+    <% end %>
+  </div>
+  <div class="all_articles">
+    <%= link_to("Все статьи за день",
+          :controller => "materials",
+          :action     => "index",
+          :material_type => "Article",
+          :date => Date.today.to_s(:db)
+        ) %>
+  </div>
+  <div class="clr"></div>
+</div>
+
+<%= banner_place(:hot) %>
+
+<div class="main_part">
+  <div class="left">
+    <div class="articles">
+      <% @sections.each do |section| %>
+        <%= render :partial => "pages/section", :locals => {:section => section} %>
+      <% end %>
+    </div>
+
+    <% if @user_articles.any? %>
+      <div class="citizen_news block">
+        <div class="h s1"><%= link_to("Народная журналистика", user_articles_path) %></div>
+
+        <% @user_articles.each do |article| %>
+          <div class="content">
+            <%= pictures_for(article, :format => :first, :thumbnail_format => "92x") %>
+            <%= link_to(article.name, article, :class => :name) %>
+
+            <%= article_meta(article, :tag_list => false) %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="add_your_news">
+      <%= link_to("Пришли новость!", new_user_article_path) %>
+      <div class="bottom"><div></div></div>
+    </div>
+
+    <div class="articles">
+      <%= section_block("cinema", :limit => 1) %>
+      <%= section_block("tv_blog", :limit => 1) %>
+      <%= render :partial => "pages/authors" %>
+      <%= section_block("found_in_chelyabinsk", :limit => 1) %>
+    </div>
+  </div>
+
+  <div class="right">
+    <%= widget_container :center_column %>
+  </div>
+
+  <div class="yad clearfix">
+    <!-- Яндекс.Директ -->
+    <script type="text/javascript">
+    //<![CDATA[
+    yandex_partner_id = 57701;
+    yandex_site_bg_color = 'FFFFFF';
+    yandex_site_charset = 'utf-8';
+    yandex_ad_format = 'direct';
+    yandex_font_size = 1;
+    yandex_direct_type = 'flat';
+    yandex_direct_border_type = 'ad';
+    yandex_direct_limit = 4;
+    yandex_direct_header_bg_color = 'FEEAC7';
+    yandex_direct_border_color = 'FBE5C0';
+    yandex_direct_title_color = '0000CC';
+    yandex_direct_url_color = '0000CC';
+    yandex_direct_all_color = '0000CC';
+    yandex_direct_text_color = '000000';
+    yandex_direct_hover_color = '0066FF';
+    yandex_direct_favicon = true;
+    document.write('<sc'+'ript type="text/javascript" src="http://an.yandex.ru/system/context.js"></sc'+'ript>');
+    //]]>
+    </script>
+  </div>
+</div>

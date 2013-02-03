@@ -1,0 +1,17 @@
+<%
+  metadata.merge(
+    :title        => ""[:horoscopes_index_title],
+    :description  => ""[:horoscopes_index_description],
+    :keywords     => ""[:horoscopes_index_keywords]
+  )
+%>
+
+<% panel(""[:horoscopes_index_header], :main => true) do %>
+  <% @signs.each do |sign| %>
+    <h2><%= ""[:"horoscopes_signs_#{sign.name}"] %></h2>
+
+    <p><%= h(sign.text) %></p>
+  <% end %>
+
+  <p><%= link_to(""[:horoscopes_index_ignio_link], "http://ignio.com/", :target => :_blank) %></p>
+<% end %>

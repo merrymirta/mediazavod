@@ -1,0 +1,9 @@
+<% content = capture do %>
+  <ul>
+    <% @materials.each do |material| %>
+      <li><%= link_to(material.name, polymorphic_url(material)) %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+document.write('<%= escape_javascript(content.single_line.squeeze(" "))  %>');

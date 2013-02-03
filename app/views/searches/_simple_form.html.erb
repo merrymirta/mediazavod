@@ -1,0 +1,13 @@
+<div id="search_block">
+  <% form_for(search, :class => :form_search, :html => {:method => :get}, :url => searches_url) do |f| %>
+    <%= f.text_field(nil, :query, :size => 30) %>
+
+    <div class="but">
+      <input type="image" src="<%= Rails.configuration.idfix.services[:publishing][:domain] %>/images/design/but_search.gif" value="" name="" alt="<%= ""[:searches_simple_form_submit] %>">
+    </div>
+
+    <div class="link_to_advanced_search">
+      <%= link_to "Расширенный поиск", advanced_new_search_url %>
+    </div>
+  <% end %>
+</div>

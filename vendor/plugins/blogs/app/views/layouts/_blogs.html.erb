@@ -1,0 +1,8 @@
+<% render :layout => "layouts/application" do %>
+  <div id="blog_controls">
+    <%= link_to(""[:blogs_controls_index], blogs_path) %>
+    <%= link_to(""[:blogs_controls_my], my_blogs_path, :id => :my_blog_link) %>
+  </div>
+
+  <%= yield %>
+<% end %>

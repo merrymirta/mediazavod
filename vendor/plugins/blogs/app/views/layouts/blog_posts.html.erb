@@ -1,0 +1,13 @@
+<% render :layout => "layouts/blogs" do %>
+  <% user = @user || (@post ? @post.author : parents.blog_post.author) %>
+  <div id="blog_header">
+    <div class="avatar"><%= link_to(user_info(user, :remote_format => :avatar), blog_path(user)) %></div>
+    <div class="name"><%= link_to(user_info(user), blog_path(user)) %></div>
+
+    <%= render :partial => "blog_posts/controls", :locals => {:post => BlogPost} if user == current_user %>
+
+    <div style="clear:both"></div>
+  </div>
+
+  <%= yield %>
+<% end %>

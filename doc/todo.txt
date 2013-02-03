@@ -1,0 +1,2 @@
+- default markup for site if config
+- template and layout selection on page creation

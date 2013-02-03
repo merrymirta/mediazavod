@@ -1,0 +1,15 @@
+<% content_tag_for :div, post do %>
+  <div class="title"><%= link_to(h(post.title), [post.author, post]) %></div>
+  <div class="created_at"><%= post.created_at.strftime(""[:common_format_datetime]) %></div>
+  <div class="content">
+    <%= filter_content(
+          post.excerpt.blank? ? post.content : "#{post.excerpt} #{link_to(""[:blog_posts_post_more], [post.author, post])}",
+          Idfix::Markup::TEXTILE
+        ) %>
+  </div>
+  <div class="metadata">
+    <%= link_to(post.comments.summary.total_count, url_for([post.author, post]) + "#comments",
+          :class => :comments
+        ) unless post.comments.summary.total_count == 0 %>
+  </div>
+<% end %>

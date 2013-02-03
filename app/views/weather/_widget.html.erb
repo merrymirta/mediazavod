@@ -1,0 +1,7 @@
+<div class="weather_widget">
+  <div class="label"><%= link_to(""[:weather_widget_header], weather_url) %></div>
+  <div class="value">
+    <%= weather.first.current_part.temperature %>&deg;C,
+    <%= weather.first.current_part.conditions %>
+  </div>
+</div>

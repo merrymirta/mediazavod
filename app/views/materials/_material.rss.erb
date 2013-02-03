@@ -1,0 +1,10 @@
+<% cache("#{material.cache_key}/preview/#{options}.rss") do %>
+  <%= pictures_for(material,
+        :format    => :first,
+        :thumbnail_format => material_translate(material.class, :index_feed_picture_format)
+      ) if material.respond_to?(:pictures) %>
+
+  <%= filter_content(material.excerpt, material.filter) %>
+
+  <%= link_to(material_translate(material.class, :index_feed_more), polymorphic_url(material)) %>
+<% end %>

@@ -1,0 +1,13 @@
+<div class="horoscopes">
+  <b><%= ""[:horoscopes_random_sign_title] %></b>
+
+  <p>
+    <span class="sign"><%= ""[:"horoscopes_signs_#{sign.name}"] %></span>:
+    
+    <%= sign.text %>
+    
+    <%= link_to(""[:horoscopes_random_sign_other], horoscopes_path, :class => :more) %>
+  </p>
+
+  
+</div>

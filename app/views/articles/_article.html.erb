@@ -1,0 +1,29 @@
+<% cache("#{material.cache_key}/preview/#{options}") do %>
+  <% div_for(material, :class => options[:class]) do %>
+    <% unless options[:thumbnail_format].blank? %>
+      <%= pictures_for(material,
+            :format    => :first,
+            :thumbnail_format => options[:thumbnail_format]
+          ) %>
+    <% end %>
+
+    <% if options[:wrap_text] %><div class="content"><% end %>
+
+    <%= link_to(material.name, material, :class => :name) %>
+
+    <div class="date">
+      <%= material.publicated_at.strftime(options[:date_format] || ""[:common_format_datetime]) %>
+    </div>
+
+    <% if options[:excerpt] %>
+      <div class="excerpt"><%= filter_content(material.excerpt, material.filter) %></div>
+    <% end %>
+
+    <% if options[:meta].is_a?(Hash) %>
+      <%= material_meta(material, options[:meta]) %>
+    <% end %>
+
+    <% if options[:wrap_text] %></div><% end %>
+  <% end %>
+  
+<% end %>

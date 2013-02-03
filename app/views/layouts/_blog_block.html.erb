@@ -1,0 +1,18 @@
+<% cache("blocks/#{section.cache_key}") do %>
+  <% if article = Article.publicated_at_section(section).publicated_at_homepage.find(:first) %>
+    <div class="panel v1">
+      <div class="title"><%= link_to(section.name, section) %></div>
+      <%= user_info(article.author, :remote_format => :avatar) %>
+
+      <div class="content">
+        <%= link_to(article.name, article, :class => :name) %>
+
+        <div class="excerpt"><%= filter_content(article.excerpt, article.filter) %></div>
+
+        <%= article_meta(article, :tag_list => false) %>
+      </div>
+    </div>
+
+    <%= banner_place("right_#{section.alias}") %>
+  <% end %>
+<% end %>

@@ -1,0 +1,16 @@
+<% admin_panel(""[:admin_materials_publicate_header], :main => true) do %>
+  <% form_for( [:publicate, :admin, @material], :html => {:class => :publicate} ) do |form| %>
+    <%= form.check_box ""[:admin_materials_label_publicate_as_hot], :publicate_as_hot %>
+    <%= form.check_box ""[:admin_materials_label_publicate_in_ya_news], :publicate_in_ya_news %>
+    <%= form.check_box ""[:admin_materials_label_publicate_at_homepage], :publicate_at_homepage %>
+    <%= form.check_box ""[:admin_materials_label_publicate_at_section, @material.section.name], :publicate_at_section %>
+    <%= form.check_box ""[:admin_materials_label_publicate_in_section_list], :publicate_in_section_list %>
+    <%= form.check_box ""[:admin_materials_label_publicate_in_section_digest], :publicate_in_section_digest %>
+    <%= form.check_box ""[:admin_materials_label_allow_comments], :allow_comments %>
+    <%= form.select ""[:admin_materials_label_comment_policy], :comment_policy, @material.class.comment_policy_options_for_select %>
+    <%= form.check_box ""[:admin_materials_label_allow_rating], :allow_rating %>
+
+    
+    <%= submit_tag ""[:admin_materials_publicate_submit] %>
+  <% end %>
+<% end %>

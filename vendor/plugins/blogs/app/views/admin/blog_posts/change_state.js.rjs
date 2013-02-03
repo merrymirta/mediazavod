@@ -1,0 +1,1 @@
+page["#blog_post_list tr:has(##{dom_id(@post)})"].remove

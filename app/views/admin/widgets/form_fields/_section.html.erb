@@ -1,0 +1,8 @@
+<%= form.check_box ""[:section_widget_label_widget_name_as_title], :widget_name_as_title %>
+
+<%= form.select ""[:section_widget_label_section], :section_id, form.object.class.section_options_for_select, :required => true %>
+<%= form.text_field ""[:section_widget_label_limit], :limit, :size => 3 %>
+
+<%= form.check_box ""[:section_widget_label_featured_comments], :featured_comments %>
+
+<%= form.check_box ""[:section_widget_label_author_picture], :author_picture %>

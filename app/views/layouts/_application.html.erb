@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <% 
+      metadata.merge(
+        :javascripts => ["application", "jquery.facebox.js", "jquery.js", "jquery.prettyPhoto.js"],
+        :stylesheets => [
+          "design",
+          ["design-ie", {:browser => :ie}],
+          #["design-opera", {:browser => :opera}],
+          "jquery.facebox.css", "prettyPhoto.css", "finance_aif.css"
+        ]
+      ) %>
+
+    <%= metadata.to_html(self) %>
+    
+    <link rel="icon" type="image/vnd.microsoft.icon" href="<%= Rails.configuration.idfix.services[:publishing][:domain] %>/images/design/favicon.ico" />
+
+    <script language="JavaScript" type="text/javascript" src="http://cityads.ru/feed.php"></script>
+
+    <meta name="verify-reformal" content="d36c90b910a598e52afd3f5f" />
+
+    <script type="text/javascript" src="http://vkontakte.ru/js/api/share.js?5" charset="windows-1251"></script>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-30400494-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function(){
+        jQuery("a[rel^='prettyPhoto']").prettyPhoto({ social_tools:
+           '<div class="facebook"><a name="fb_share" type="icon_link" href="http://www.facebook.com/sharer.php">Facebook</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"><\/script></div> \
+            <div class="vkontakte"><div id="vk_share"></div><script type="text/javascript">document.getElementById("vk_share").innerHTML=VK.Share.button(false,{type:"link",text:"ВКонтакте"});<\/script></div> \
+            <div class="pinterest"><a href="http://pinterest.com/pin/create/button/?url='+encodeURIComponent(document.location.href)+'&description='+encodeURIComponent(document.title)+
+            '&media=http://mediazavod.ru'+$("a[rel^='prettyPhoto']").first().attr("href")+
+            '" class="pin-it-button" count-layout="none"><img src="//assets.pinterest.com/images/PinExt.png" alt="Pin it" / ></a><script type="text/javascript" src="http://assets.pinterest.com/js/pinit.js"><\/script></div>'
+        });
+      });
+    </script>
+  </head>
+  <body>
+  	<div id="main" >
+      <%= banner_place(:header_top) %>
+
+      <%= yield(:header).blank? ? render(:partial => "layouts/header") : yield(:header) %>
+
+      <% object_restrict_to(Idfix, :administration) do %>
+        <div style="margin:20px; padding:20px; border: 2px solid orange;">
+          Для входа в систему администрирования используйте следующий адрес (рекомендуем добавить в закладки):
+
+          <%= link_to(admin_root_url, admin_root_url, :target => :_blank, :style => "font-weight: bold;") %>
+        </div>
+      <% end %>
+
+      <%= flash_block %>
+
+      <table cellpadding="0" cellspacing="0" width="935" border="0" id="general_table">
+        <tr>
+          <td id="left">
+            <%= yield %>
+          </td>
+          <td id="right">
+            <%= yield(:right_column) %>
+
+            <%=widget_container :right_column %>
+          </td>
+        </tr>
+      </table>
+
+      <div id="footer_place"></div>
+    </div>
+
+    <%= render(:partial => "layouts/footer") %>
+
+    <%= load_banners! %>
+  </body>
+</html>

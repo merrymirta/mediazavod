@@ -1,0 +1,55 @@
+blog_post_label_title: "Заголовок"
+blog_post_label_excerpt: "Анонс"
+blog_post_label_content: "Полный текст"
+
+# Admin Interface
+
+admin_blog_posts_menu_link: "Блоги"
+admin_blog_posts_controls_draft: "Черновики"
+admin_blog_posts_controls_publicated: "Ожидающие"
+admin_blog_posts_controls_approved: "Одобренные"
+admin_blog_posts_controls_featured: "Выделенные"
+admin_blog_posts_controls_declined: "Запрещенные"
+admin_blog_posts_controls_view: "Просмотр"
+admin_blog_posts_controls_approve: "Одобрить"
+admin_blog_posts_controls_decline: "Запретить"
+admin_blog_posts_controls_feature: "Выделить"
+
+admin_blog_posts_index_header: "Блоги"
+admin_blog_posts_index_empty_set: "Записи в блогах отсутствуют"
+
+admin_blog_posts_edit_header: "Редактирование записи"
+admin_blog_posts_edit_submit: "Сохранить"
+
+admin_blog_posts_update_flash_success: "Запись успешно обновлена!"
+
+# User Interface
+
+blogs_controls_my: "Мой блог"
+blogs_controls_index: "Блоги пользователей"
+
+blogs_index_header: "Блоги пользователей"
+
+blog_posts_controls_new: "Добавить запись"
+blog_posts_controls_drafts: "Черновики"
+blog_posts_controls_edit: "Редактировать"
+blog_posts_controls_publicate: "Опубликовать"
+blog_posts_controls_delete: "Удалить"
+blog_posts_controls_delete_confirm: "Вы действительно хотите удалить эту запись?"
+
+blog_posts_new_header: "Новая запись"
+blog_posts_new_submit: "Добавить"
+
+blog_posts_create_flash_success: "Запись успешно создана!"
+
+blog_posts_drafts_header: "Черновики записей"
+blog_posts_drafts_empty_set: "У вас нет черновиков"
+
+blog_posts_update_flash_success: "Запись успешно обновлена!"
+
+blog_posts_edit_header: "Редактирование записи"
+blog_posts_edit_submit: "Сохранить"
+
+blog_posts_post_more: "Читать далее..."
+
+blog_posts_latest_more: "Все блоги &raquo;"

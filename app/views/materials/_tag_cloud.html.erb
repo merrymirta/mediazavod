@@ -1,0 +1,20 @@
+<% cache("#{type}/tag_cloud/#{container ? container.cache_key : Tagging.last.cache_key }") do %>
+
+  <% if popular_tags = Tag.popular_for_materials(container, type) and popular_tags.any? %>
+    <div class="panel v2">
+      <div class="title"><%= ""[:tags_cloud_header] %></div>
+      <div class="tags">
+        <% tag_cloud(popular_tags) do |tag, class_name| %>
+          <%= link_to tag.name.sub(" ", "&nbsp;"), [tag, type.new], :class => class_name %>
+        <% end %>
+
+        <% if container.is_a?(Section) %>
+          <%= link_to("<strong><em>#{container.name} Челябинск</em></strong>", container) %>
+        <% elsif type == Shorty %>
+          <%= link_to("<strong><em>Новости Челябинска</em></strong>", homepage_shorties_path) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+<% end %>

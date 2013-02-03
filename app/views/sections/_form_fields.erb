@@ -1,0 +1,22 @@
+<% if params[:parent_id] and parent = form.object.class.find(params[:parent_id]) %>
+  <%= form.generic_field(:parent,
+        link_to(parent.name, parent, :method => :get),
+        :label => ""[:section_label_parent]
+      ) %>
+
+  <%= hidden_field_tag :parent_id, parent.id %>
+<% end %>
+
+<%= form.text_field ""[:section_label_name], :name, :required => true %>
+<%= form.text_field ""[:section_label_alias], :alias, :required => true %>
+
+<%= form.text_field ""[:section_label_description], :description %>
+
+<%= form.check_box ""[:section_label_display_at_homepage], :display_at_homepage %>
+<%= form.check_box ""[:section_label_display_in_selectors], :display_in_selectors %>
+
+<%= form.text_field ""[:section_label_shorties_at_homepage], :shorties_at_homepage, :size => 2 %>
+<%= form.text_field ""[:section_label_articles_at_homepage], :articles_at_homepage, :size => 2 %>
+
+<%= form.text_field ""[:section_label_shorties_at_section], :shorties_at_section, :size => 2 %>
+<%= form.text_field ""[:section_label_articles_at_section], :articles_at_section, :size => 2 %>

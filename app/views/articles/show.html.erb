@@ -1,0 +1,133 @@
+<%
+  metadata.title        = ["#{@material.name}. #{@material.tag_list.to_s}"]
+  metadata.description  = [@material.excerpt]
+  metadata.keywords     = [@material.tag_list.to_s]
+%>
+
+<% cache(@material.cache_key) do %>
+  <div class="top">
+    <div id="table_top_article">
+      <%= section_breadcrumbs(@material.section, :disable_for_root => false) %>
+
+      <div class="article">
+        <%= pictures_for(@material,
+              @material.pictures.size > 1 ? {
+                :format => :widget,
+                :full_size_format => "320x320>",
+                :thumbnail_format => "60x45",
+                :full_size_first => true
+              } : {
+                :format => :first_with_name,
+                :thumbnail_format => "320x320>"
+              }
+            ) %>
+
+        <h1 class="title"><%= @material.name %></h1>
+
+        <% if @material.publicated? %>
+          <div class="date"><%= @material.publicated_at.strftime(""[:common_format_datetime])%></div>
+        <% end %>
+
+        <%= article_meta(@material) %>
+
+        <div class="text">
+          <%= filter_content(radius_filter(@material.article_content.text), @material.article_content.filter) %>
+        </div>
+
+        <%= render :partial => "materials/share", :locals => {:material => @material} %>
+
+        <%= user_info(@material.author, :remote_format => :general, :controls => false) %>
+      </div>
+
+      <% if previous_article = Article.publicated_at_section(@material.section).publicated_before(@material).first %>
+        <div class="prev"><%= link_to("Предыдущая статья", previous_article) %></div>
+      <% end %>
+
+      <% if next_article = Article.publicated_at_section(@material.section).publicated_after(@material).first %>
+        <div class="next"><%= link_to("Следующая статья", next_article) %></div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="yad clearfix">
+  <!-- Яндекс.Директ -->
+  <script type="text/javascript">
+  //<![CDATA[
+  yandex_partner_id = 57701;
+  yandex_site_bg_color = 'FFFFFF';
+  yandex_site_charset = 'windows-1251';
+  yandex_ad_format = 'direct';
+  yandex_font_size = 1;
+  yandex_direct_type = 'flat';
+  yandex_direct_border_type = 'ad';
+  yandex_direct_limit = 4;
+  yandex_direct_header_bg_color = 'FEEAC7';
+  yandex_direct_border_color = 'FBE5C0';
+  yandex_direct_title_color = '0000CC';
+  yandex_direct_url_color = '0000CC';
+  yandex_direct_all_color = '0000CC';
+  yandex_direct_text_color = '000000';
+  yandex_direct_hover_color = '0066FF';
+  yandex_direct_favicon = true;
+  document.write('<sc'+'ript type="text/javascript" src="http://an.yandex.ru/system/context.js"></sc'+'ript>');
+  //]]>
+  </script>
+</div>
+<div style="margin-top:10px;">
+<!-- Menu block -->
+<script language="JavaScript" type="text/javascript">
+	var menu_template_url = "/stylesheets/finance_aif_menu_template.jqtmpl";
+	var feed_id = 82644;
+	buildFeed('menu',	82644, menu_template_url, 0,1); 
+</script>
+
+
+<!-- Filter block -->
+<script language="JavaScript" type="text/javascript">
+	var filter="type,bank,payment_system"; // перечень блоков в фильтре
+	var filter_template_url = "/stylesheets/finance_aif_filter_template.jqtmpl";
+	buildFeed('filter',	82644, filter_template_url, 0,1);	
+</script>
+<script language="JavaScript" type="text/javascript" src="http://cityads.ru/css/feed_example/finance_aif_extra.js"></script>
+
+<!-- Feed block -->
+<script language="JavaScript" type="text/javascript">
+	var feed_card_template_url = "/stylesheets/finance_aif_template_card.jqtmpl"; //шаблон фида с кредитными картами.
+	var feed_credit_template_url = "/stylesheets/finance_aif_template_credit.jqtmpl";	//шаблон фида с кредитами.
+	var feed_loan_template_url = "/stylesheets/finance_aif_template_loan.jqtmpl"; //шаблон фида с займами.
+	buildFeed('feed',	82644, feed_card_template_url, 0,1);	//если нужно показать при загрузке, например кредиты, вызываем функцию с такими параметрами: buildFeed('feed', <FEED_ID>, feed_credit_template_url, 0, 2);
+</script>
+</div>
+
+
+<%= comments_for(@material, :per_page => 20) if @material.allow_comments? %>
+
+<%#= related_materials_for(@material) %>
+
+<% content_for(:right_column) do %>
+  <% if articles = @material.section.articles.publicated.except(@material).find(:all, :limit => 2) and articles.any? %>
+    <div class="panel v1">
+      <div class="title">Другие статьи раздела</div>
+
+      <% articles.each do |article| %>
+        <%= material_preview(article, :thumbnail_format => "74x", :class => :content, :meta => {:tag_list => false}) %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if shorties = @material.section.shorties.publicated.find(:all, :limit => 5) and shorties.any? %>
+    <div class="panel v1">
+      <div class="title">Новости раздела</div>
+
+      <div class="shorties">
+        <% shorties.each do |shorty| %>
+          <div class="shorty">
+            <%= link_to(shorty.name, shorty, :class => :name) %>
+            <div class="date"><%= shorty.publicated_at.strftime(""[:common_format_datetime]) %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

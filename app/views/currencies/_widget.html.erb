@@ -1,0 +1,9 @@
+<% current = CurrencyRate.latest %>
+<div class="currency_widget">
+  <% [:USD, :EUR].each do |key| %>
+    <div class="label"><%= link_to(key, currencies_url) %></div>
+    <div class="value <%= current.increased?(key) ? "up" : ("down" if current.decreased?(key)) %>">
+      <%= "%.4f" % current.rates[key].value %>
+    </div>
+  <% end %>
+</div>

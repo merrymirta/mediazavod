@@ -1,0 +1,17 @@
+<% if business_news = Section.find_by_alias("business_news") and
+      articles = Article.publicated_at_section(business_news).publicated_at_homepage and
+      articles.any? %>
+  <div class="business_news block">
+    <div class="h s1"><span class="note">На правах рекламы</span><%= link_to(business_news.name, business_news) %></div>
+
+    <% articles.each do |article| %>
+      <div class="content">
+        <%= pictures_for(article, :format => :first, :thumbnail_format => "92x") %>
+        <%= link_to(article.name, article, :class => :name) %>
+        <div class="excerpt"><div class="excerpt"><%= filter_content(article.excerpt, article.filter) %></div></div>
+
+        <%= article_meta(article, :tag_list => false) %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<%
+  metadata.merge(
+    :feeds => {
+      :name => ""[:sections_show_articles_feed, section.name],
+      :url  => formatted_section_articles_path(section, :rss)
+    }
+  )
+%>
+
+<% cache("home/#{section.cache_key}") do %>
+
+  <% if article = section.articles.publicated_at_homepage.find(:first) %>
+    <div class="h s2"><%= link_to(section.name, section, :id => dom_id(section, :link), :rel => "##{dom_id(section, :tip)}") %></div>
+
+    <%= material_preview(article, :thumbnail_format => "98x", :wrap_text => true, :meta => {:tag_list => false}) %>
+  <% end %>
+
+<% end %>

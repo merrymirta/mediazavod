@@ -1,0 +1,7 @@
+<% if services = Page.find_by_permalink("services") %>
+  <div class="services block">
+    <div class="h s1">Сервисы</div>
+
+    <%= filter_content(services.content, services.filter) %>
+  </div>
+<% end %>

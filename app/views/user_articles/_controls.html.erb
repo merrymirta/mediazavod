@@ -1,0 +1,13 @@
+<% wrap_controls(article) do %>
+  <%= link_to(""[:user_article_controls_edit], [:edit, article],
+        :class => :edit
+      ) if object_permit?(article, :edit) %>
+
+  <%= picture_controls_for(article) %>
+
+  <%= link_to(""[:user_article_controls_delete], article,
+        :method   => :delete,
+        :confirm  => ""[:user_article_controls_delete_confirm],
+        :class    => :delete
+      ) if object_permit?(article, :delete) %>
+<% end %>

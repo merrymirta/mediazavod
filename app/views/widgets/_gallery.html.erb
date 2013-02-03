@@ -1,0 +1,11 @@
+<% if gallery = Gallery.publicated_at_homepage.find(:first) %>
+  <div class="panel v2" id="gallery">
+    <div class="title"><%= link_to(""[:pages_section_galleries_header], galleries_path) %></div>
+    <div class="content">
+      <%= link_to(pictures_for(gallery, :format => :first, :thumbnail_format => "258x"), gallery) %>
+      <div class="field">
+        <%= link_to(gallery.name, gallery, :class => :name) %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,1 @@
+$memcache = MemCache.new('localhost:11211', :namespace => Rails.configuration.idfix.project_name)

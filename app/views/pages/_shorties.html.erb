@@ -1,0 +1,9 @@
+<div class="shorties block">
+  <div class="h s1"><%= link_to("Новости Челябинска", homepage_shorties_path) %></div>
+
+  <% @hot_shorties.each do |shorty| %>
+    <%= shorty_preview(shorty) %>
+  <% end %>
+
+  <%= link_to("Вся лента новостей", homepage_shorties_path, :class => :archive) %>
+</div>

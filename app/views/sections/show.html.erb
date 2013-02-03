@@ -1,0 +1,93 @@
+<%
+  metadata.title        = [@section.meta_title_or_name]
+  metadata.description  = [@section.meta_description_or_name]
+  metadata.keywords     = [@section.meta_keywords_or_name]
+
+  metadata.merge(
+    :feeds        => [
+      {
+        :name   => ""[:sections_show_articles_feed, @section.name],
+        :url    => formatted_section_articles_path(@section, :rss)
+      },
+      {
+        :name   => ""[:sections_show_shorties_feed, @section.name],
+        :url    => formatted_section_shorties_path(@section, :rss)
+      }
+    ]
+  )
+%>
+
+<% cache(@section.cache_key) do %>
+  
+  <div class="section">
+    <div class="top">
+      <%= section_breadcrumbs(@section, :disable_for_root => false) %>
+
+      <div class="subscribe">
+        <%= link_to("RSS-подписка на этот раздел", formatted_section_articles_path(@section, :rss)) %>
+      </div>
+
+      <%= material_preview(@articles.first, :thumbnail_format => "185x144", :class => :top_article, :wrap_text => true) %>
+    </div>
+
+    <%= banner_place("section_#{ @section.alias }_top") %>
+
+<div class="yad clearfix">
+  <!-- Яндекс.Директ -->
+  <script type="text/javascript">
+  //<![CDATA[
+  yandex_partner_id = 57701;
+  yandex_site_bg_color = 'FFFFFF';
+  yandex_site_charset = 'windows-1251';
+  yandex_ad_format = 'direct';
+  yandex_font_size = 1;
+  yandex_direct_type = 'flat';
+  yandex_direct_border_type = 'ad';
+  yandex_direct_limit = 4;
+  yandex_direct_header_bg_color = 'FEEAC7';
+  yandex_direct_border_color = 'FBE5C0';
+  yandex_direct_title_color = '0000CC';
+  yandex_direct_url_color = '0000CC';
+  yandex_direct_all_color = '0000CC';
+  yandex_direct_text_color = '000000';
+  yandex_direct_hover_color = '0066FF';
+  yandex_direct_favicon = true;
+  document.write('<sc'+'ript type="text/javascript" src="http://an.yandex.ru/system/context.js"></sc'+'ript>');
+  //]]>
+  </script>
+</div>
+    
+    <div class="main_part">
+      <div class="articles">
+        <% @articles[1..-1].each do |article| %>
+          <%= material_preview(article, :thumbnail_format => "98x", :wrap_text => true) %>
+        <% end %>
+      </div>
+
+      <div class="shorties block">
+        <div class="h s1"><%= link_to("Лента новостей", section_shorties_path(@section)) %></div>
+
+        <% @shorties.each do |shorty| %>
+          <%= shorty_preview(shorty) %>
+        <% end %>
+
+        <%= link_to("Вся лента новостей", section_shorties_path(@section), :class => :archive) %>
+
+        <%= banner_place(:shorties) %>
+      </div>
+
+      <%= material_tag_cloud(@section, Article) %>
+
+      <%= will_paginate(@articles, :params => {
+            :controller => :materials,
+            :action => :index,
+            :section_id => @section,
+            :material_type => "Article",
+            :id => nil
+          }) %>
+    </div>
+
+    <div class="additional_text"><%= @section.additional_text %></div>
+  </div>
+
+<% end %>

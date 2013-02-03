@@ -1,0 +1,23 @@
+<table class="article">
+  <tr>
+    <td class="picture">
+      <%= pictures_for(article,
+            :format           => :cover,
+            :thumbnail_format => "100x",
+            :controls         => false
+          ) %>
+    </td>
+    <td class="details">
+      <%= link_to(article.name, object_permit?(article, :edit) ? edit_admin_article_path(article) : article, :class => :name) %>
+
+      <div class="excerpt">
+        <%= filter_content(article.excerpt, article.filter) %>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <%= render :partial => "admin/materials/meta", :locals => {:material => article} %>
+    </td>
+  </tr>
+</table>

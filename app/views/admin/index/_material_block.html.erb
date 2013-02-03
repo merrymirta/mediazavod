@@ -1,0 +1,19 @@
+<% admin_panel(""[:admin_index_materials_block], :main => false) do %>
+  <% (Material.types - [Material]).each do |type| %>
+    <% if materials = type.pending.find(:all, :limit => 5) and materials.any? %>
+      <div>
+        <strong>
+          <%= link_to(""[:"materials_types_#{type.to_s.tableize}"], url_for([:admin, type.new]) + "?state=pending") %>
+        </strong> &raquo;
+        <ul>
+          <% materials.each do |material| %>
+            <li>
+              <%= link_to(material.name, edit_polymorphic_path([:admin, material])) %>
+              (<%= datetime(material.created_at) %>)
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

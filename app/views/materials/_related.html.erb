@@ -1,0 +1,19 @@
+<% cache("#{source.cache_key}/related/#{options}") do %>
+
+  <% if source.related_by_tags.any? %>
+    <% panel material_translate(@type, :show_related_header), :class => "v1 related" do %>
+      <% source.related_by_tags.each do |material| %>
+        <%= material_preview(
+              material,
+              options.reverse_merge(
+                :excerpt          => false,
+                :thumbnail_format => material_translate(@type, :show_related_picture_format),
+                :controls         => false,
+                :meta             => {:section => false, :tag_list => false}
+              )
+            ) %>
+      <% end %>
+    <% end %>
+  <% end %>
+  
+<% end %>

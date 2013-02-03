@@ -1,0 +1,25 @@
+<% wrap_controls(post) do %>
+  <% if post.is_a?(BlogPost) %>
+    <%= link_to(""[:blog_posts_controls_edit], [:edit, post.author, post],
+          :class => :edit
+        ) if object_permit?(post, :edit) %>
+
+    <%= picture_controls_for(post) %>
+
+    <%= link_to(""[:blog_posts_controls_publicate], [:publicate, post.author, post],
+          :method => :post,
+          :class  => :publicate
+        ) if object_permit?(post, :publicate) %>
+
+    <%= link_to(""[:blog_posts_controls_delete], [post.author, post],
+          :method   => :delete,
+          :confirm  => ""[:blog_posts_controls_delete_confirm],
+          :class    => :delete
+        ) if object_permit?(post, :delete) %>
+  <% else %>
+    <%= link_to(""[:blog_posts_controls_new], new_user_blog_post_path(current_user)) if object_permit?(post, :create) %>
+
+    <% drafts = current_user.blog_posts.by_state(:draft).count %>
+    <%= link_to("#{""[:blog_posts_controls_drafts]} (#{drafts})", drafts_user_blog_posts_path(current_user)) if object_permit?(post, :create) and drafts > 0 %>
+  <% end %>
+<% end %>

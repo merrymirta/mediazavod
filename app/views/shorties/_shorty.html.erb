@@ -1,0 +1,7 @@
+<% div_for(material, :class => (:hot if material.publicate_as_hot?)) do %>
+  <%= link_to(material.name, material, :class => :name) %>
+
+  <div class="date"><%= material.publicated_at.strftime(""[:common_format_datetime]) %></div>
+
+  <div class="excerpt"><%= filter_content(material.first_sentence_or_excerpt, material.filter) %></div>
+<% end %>

@@ -1,0 +1,19 @@
+var new_comment_content = '<%= 
+  escape_javascript_with_ssi(
+    show_comment(@comment,
+      :level => @comment.level - 1,
+      :color => :white
+    )
+  ) %>';
+
+<% if @comment.parent.root? %>
+  jQuery('.comments .empty_set').remove();
+  jQuery('.comments .tree').append(new_comment_content);
+  jQuery('#new_comment').reset();
+  jQuery('#new_comment .spinner').hide();
+<%  else %>
+  jQuery('#<%= dom_id(@comment.parent) %> .reply_form').empty();
+  jQuery('#<%= dom_id(@comment.parent) %>').parent().after(new_comment_content);
+<% end %>
+
+jQuery('#<%= dom_id(@comment) %>').highlight();

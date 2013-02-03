@@ -1,0 +1,21 @@
+<% content_for :header_logo do %>
+  <%= link_to(image_tag("design/logo_#{@section.alias}.gif", :alt => @section.name), newspaper_url(@section)) %>
+<% end %>
+
+<% content_for :header_units do %>
+  <%= link_to("МедиаЗавод", root_url) %>
+
+  <% if @section.alias == "rabochy" %>
+    <%= link_to("Урожайная газета", newspaper_url(:ug)) %>
+  <% else %>
+    <%= link_to("Челябинский рабочий", newspaper_url(:rabochy)) %>
+  <% end %>
+<% end %>
+
+<% content_for :footer_navigation do %>
+  <%= render :partial => "layouts/footer_#{@section.alias}" %>
+<% end %>
+
+<% render :layout => "layouts/application" do %>
+  <%= yield %>
+<% end %>

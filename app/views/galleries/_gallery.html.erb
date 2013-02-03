@@ -1,0 +1,21 @@
+<% cache("#{material.cache_key}/#{options}") do %>
+
+  <% div_for(material, :class => options[:class]) do %>
+    <%= link_to(material.name, material, :class => :name) %>
+
+    <div class="thumbs">
+      <%= link_to(
+            pictures_for(material,
+              :format           => :preview_list,
+              :thumbnail_format => options[:thumbnail_format]
+            ),
+            material
+          ) %>
+    </div>
+
+    <% if options[:meta].is_a?(Hash) %>
+      <%= material_meta(material, options[:meta]) %>
+    <% end %>
+  <% end %>
+
+<% end %>

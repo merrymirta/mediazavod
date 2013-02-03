@@ -1,0 +1,16 @@
+var idfix_material_section;
+var idfix_material_type;
+
+var idfix_url = '<%= root_url %>';
+
+if(idfix_material_type == undefined){
+  idfix_material_type = 'materials';
+}
+
+if(idfix_material_section != undefined){
+  idfix_url += 'sections/' + idfix_material_section + '/';
+}
+
+idfix_url += idfix_material_type + '.js';
+
+document.write('<scri' + 'pt type="text/javascript" src="' + idfix_url + '"></sc' + 'ript>');

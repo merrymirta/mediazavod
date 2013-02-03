@@ -1,0 +1,59 @@
+<%= section_block("specproject", :limit => 1) %>
+
+<% if discussions = Section.find_by_alias("discussions") and
+      article = Article.publicated_at_homepage.publicated_at_section(discussions).find(:first) %>
+  <div class="panel v1">
+    <div class="title"><%= link_to(discussions.name, discussions) %></div>
+    <div class="content">
+      <%= pictures_for(article, :format => :first, :thumbnail_format => "92x") %>
+      <%= link_to(article.name, article, :class => :name) %>
+      <div class="excerpt"><%= filter_content(article.excerpt, article.filter) %></div>
+    </div>
+
+    <% article.comments.featured.find(:all, :limit => 2).each do |comment| %>
+      <div class="comment">
+        <span class="user"><%= comment.anonymous? ? comment.user_name : user_info(comment.user) %></span>,
+        <span class="time"><%= comment.created_at.strftime("%H:%M") %></span>:
+        <%= link_to(
+              (comment.text.split(/\s+/)[0..7] << "...").join(" "),
+              url_for(article) + "#comments",
+              :class => :excerpt
+            ) %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= banner_place(:right_discussion) %>
+<% end %>
+
+<%= section_block("conference", :limit => 2) %>
+<%= section_block("consultation", :limit => 1) %>
+<%= section_block("interview", :limit => 1) %>
+<%= section_block("politclub", :limit => 1) %>
+<%= section_block("progress-space", :limit => 1) %>
+
+<%= most_commentable(
+      :limit  => 5,
+      :date   => 7.days.ago .. Time.now
+    ) %>
+
+<%= blog_block("grenie") %>
+<%= blog_block("nigmatullin") %>
+
+<%= section_block("fitness_club", :limit => 1) %>
+
+<% if gallery = Gallery.publicated_at_homepage.find(:first) %>
+  <div class="panel v2" id="gallery">
+    <div class="title"><%= link_to(""[:pages_section_galleries_header], galleries_path) %></div>
+    <div class="content">
+      <%= link_to(pictures_for(gallery, :format => :first, :thumbnail_format => "258x"), gallery) %>
+      <div class="field">
+        <%= link_to(gallery.name, gallery, :class => :name) %>
+      </div>
+    </div>
+  </div>
+
+  <%= banner_place(:right_gallery) %>
+<% end %>
+
+<%= banner_place(:right_bottom) %>

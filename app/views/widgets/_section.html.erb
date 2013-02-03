@@ -1,0 +1,38 @@
+<% cache("widgets/#{widget.section.cache_key}") do %>
+  <% if articles = Article.publicated_at_section(widget.section).publicated_at_homepage.find(:all, :limit => widget.limit) and
+        articles.any? %>
+    <div class="panel v1">
+      <div class="title"><%= link_to(widget.title, widget.section) %></div>
+
+      <% articles.each do |article| %>
+        <div class="content clearfix">
+          <% if widget.author_picture %>
+            <%= user_info(article.author, :remote_format => :avatar) %>
+          <% else %>
+            <%= pictures_for(article, :format => :first, :thumbnail_format => "92x") %>
+          <% end %>
+
+          <%= link_to(article.name, article, :class => :name) %>
+
+          <div class="excerpt"><%= filter_content(article.excerpt, article.filter) %></div>
+        
+          <% if widget.featured_comments %>
+            <% article.comments.featured.find(:all, :limit => 2).each do |comment| %>
+              <div class="comment">
+                <span class="user"><%= comment.anonymous? ? comment.user_name : user_info(comment.user) %></span>,
+                <span class="time"><%= comment.created_at.strftime("%H:%M") %></span>:
+                <%= link_to(
+                      (comment.text.split(/\s+/)[0..7] << "...").join(" "),
+                      url_for(article) + "#comments",
+                      :class => :excerpt
+                    ) %>
+              </div>
+            <% end %>
+          <% else %>
+            <%= article_meta(article, :tag_list => false) %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

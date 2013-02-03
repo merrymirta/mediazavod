@@ -1,0 +1,26 @@
+<% cache("#{article.cache_key}/preview") do %>
+  <% div_for(article, :class => :article) do %>
+    <%= pictures_for(article,
+          :format    => :first,
+          :thumbnail_format => "120x90"
+        ) %>
+
+    <div class="content">
+
+      <%= link_to(h(article.name), article, :class => :name) %>
+
+      <div class="date">
+        <%= article.created_at.strftime(""[:common_format_datetime]) %>
+      </div>
+
+      <div class="excerpt"><%= filter_content(article.excerpt, article.filter) %></div>
+
+      <div class="metadata">
+        <% if article.comments.summary.total_count > 0  %>
+          <%= link_to(article.comments.summary.total_count, url_for(article) + "#comments", :class => :comments) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+<% end %>

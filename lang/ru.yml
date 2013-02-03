@@ -1,0 +1,330 @@
+service_name: "Публикации"
+
+# Страницы
+
+pages_home_hot_header: "События"
+pages_home_hot_article_picture_format: "120x90"
+pages_home_articles_feed: "Все статьи в формате RSS"
+pages_home_articles_archive: "Все статьи"
+pages_home_shorties_feed: "Все новости в формате RSS"
+pages_home_shorties_archive: "Все новости"
+pages_home_galleries_archive: "Фотоархив"
+pages_home_partners: "Наши партнеры"
+
+pages_section_top_article_picture_format: "120x90"
+pages_section_article_picture_format: "90x68"
+pages_section_articles_archive: "Архив"
+pages_section_galleries_header: "Фотогалерея"
+pages_section_shorties_archive: "Архив"
+
+# Материалы
+
+materials_types_articles: "Статьи"
+materials_types_galleries: "Галереи"
+materials_types_shorties: "Новости"
+
+# Administrative Interface
+
+admin_materials_label_section: "Раздел"
+admin_materials_label_name: "Заголовок"
+admin_materials_label_excerpt: "Краткий анонс"
+admin_materials_label_filter: "Форматирование"
+admin_materials_label_source_name: "Источник"
+admin_materials_label_source_url: "Ссылка на источник"
+admin_materials_label_author: "Автор"
+admin_materials_label_created_at: "Дата создания"
+admin_materials_label_updated_at: "Дата изменения"
+admin_materials_label_publicated_at: "Дата публикации"
+admin_materials_label_publicate_as_hot: "Публиковать в актуальном"
+admin_materials_label_publicate_at_homepage: "Публиковать на главной"
+admin_materials_label_publicate_at_section: "Публиковать в разделе <b>{name}</b>"
+admin_materials_label_publicate_in_section_list: "Добавить в рассылку раздела"
+admin_materials_label_publicate_in_section_digest: "Добавить в дайджест раздела"
+admin_materials_label_publicate_in_ya_news: "Добавить в Яндекс.Новости"
+admin_materials_label_allow_comments: "Разрешить комментарии"
+admin_materials_label_comment_policy: "Политика комментариев"
+admin_materials_label_allow_rating: "Разрешить рейтинг"
+admin_materials_label_tag_list: "Метки"
+admin_materials_label_ya_news_text: "Текст для Яндекс.Новостей"
+
+admin_materials_sidebar_calendar: "Календарь"
+
+admin_index_materials_block: "Материалы"
+
+admin_materials_state_draft: "Черновик"
+admin_materials_state_pending: "Ожидает проверки"
+admin_materials_state_publicated: "Опубликованно"
+admin_materials_state_deleted: "Удаленно"
+
+admin_materials_meta_state: "Статус:"
+admin_materials_meta_publicated_at: "Дата:"
+admin_materials_meta_section: "Раздел:"
+
+admin_materials_controls_search: "Поиск"
+admin_materials_controls_draft: "Черновики"
+admin_materials_controls_pending: "Ожидают проверки"
+admin_materials_controls_publicated: "Опубликованные"
+admin_materials_controls_deleted: "Удаленные"
+admin_materials_controls_new: "Добавить материал"
+admin_materials_controls_edit: "Редактировать"
+admin_materials_controls_delete: "Удалить"
+admin_materials_controls_send_to_test: "Отправить на проверку"
+admin_materials_controls_publicate: "Опубликовать"
+admin_materials_controls_preview: "Просмотр"
+admin_materials_controls_upload_archive: "Загрузить архив"
+
+admin_materials_index_header_with_parent: "{parent}: Материалы"
+admin_materials_index_header_without_parent: "Все материалы"
+admin_materials_index_empty_set: "По заданным критериям не найдено ни одного материала"
+
+admin_materials_new_header: "Новый материал"
+admin_materials_new_submit: "Добавить"
+
+admin_materials_create_flash_success: "Материал успешно создана!"
+
+admin_materials_edit_header: "Редактирование материала"
+admin_materials_edit_submit: "Сохранить"
+
+admin_materials_update_flash_success: "Параметры материала успешно сохранены!"
+
+admin_materials_delete_confirm: "Вы уверены что хотите удалить этот материал?"
+admin_materials_delete_flash_success: "Материал успешно удален!"
+admin_materials_delete_flash_error: "При удалении материала произошла ошибка. Пожалуйста, обратитесь к администратору!"
+
+admin_materials_publicate_header: "Публикация"
+admin_materials_publicate_submit: "Опубликовать"
+admin_materials_publicate_flash_success: "Материал успешно опубликован!"
+
+admin_materials_send_to_test_flash_success: "Материал отправлен на проверку администратору"
+
+admin_materials_upload_archive_header: "Загрузка архива"
+admin_materials_upload_archive_submit: "Загрузить"
+admin_materials_upload_archive_flash_success: "Файл успешно загружен!"
+admin_materials_upload_archive_flash_error: "Файл не был загружен"
+
+
+admin_article_contents_label_text: "Полный текст"
+admin_article_contents_label_filter: "Форматирование"
+
+admin_articles_controls_new: "Добавить статью"
+
+admin_articles_index_header_with_parent: "{parent}: Статьи"
+admin_articles_index_header_without_parent: "Все статьи"
+admin_articles_index_empty_set: "По заданным критериям не найдено ни одной статьи"
+
+admin_articles_new_header: "Новая статья"
+
+admin_articles_create_flash_success: "Статья успешно создана!"
+
+admin_articles_edit_header: "Редактирование статьи"
+
+admin_articles_update_flash_success: "Параметры статьи успешно сохранены!"
+
+admin_articles_delete_confirm: "Вы уверены что хотите удалить эту статью?"
+admin_articles_delete_flash_success: "Статья успешно удалена!"
+admin_articles_delete_flash_error: "При удалении статьи произошла ошибка. Пожалуйста, обратитесь к администратору!"
+
+admin_articles_publicate_flash_success: "Статья успешно опубликована!"
+
+admin_articles_send_to_test_flash_success: "Статья отправлена на проверку администратору"
+
+admin_galleries_controls_new: "Добавить галерею"
+
+admin_galleries_index_header_with_parent: "{parent}: Фотогалереи"
+admin_galleries_index_header_without_parent: "Все фотогалереи"
+admin_galleries_index_materials_not_found: "По заданным критериям не найдено ни одной галереи"
+
+admin_galleries_new_header: "Новая галерея"
+
+admin_galleries_create_flash_success: "Галерея успешно создана!"
+
+admin_galleries_edit_header: "Редактирование галереи"
+
+admin_galleries_update_flash_success: "Параметры галереи успешно сохранены!"
+
+admin_galleries_delete_confirm: "Вы уверены что хотите удалить эту галерею?"
+admin_galleries_delete_flash_success: "Галерея успешно удалена!"
+admin_galleries_delete_flash_error: "При удалении галереи произошла ошибка. Пожалуйста, обратитесь к администратору!"
+
+admin_shorties_controls_new: "Добавить новость"
+
+admin_shorties_new_header: "Добавление новости"
+
+admin_shorties_create_flash_success: "Новость успешно создана!"
+
+admin_shorties_edit_header: "Редактирование новости"
+
+admin_shorties_update_flash_success: "Параметры новости успешно сохранены!"
+
+admin_shorties_delete_confirm: "Вы уверены что хотите удалить эту новость?"
+admin_shorties_delete_flash_success: "Новость успешно удалена!"
+admin_shorties_delete_flash_error: "При удалении новости произошла ошибка. Пожалуйста, обратитесь к администратору!"
+
+admin_shorties_index_header_with_parent: "{parent}: Новости"
+admin_shorties_index_header_without_parent: "Новости Челябиска и Южного Урала"
+admin_shorties_index_empty_set: "По заданным критериям не найдено ни одной новости"
+
+
+section_widget_type_name: "Виджет раздела"
+section_widget_label_section: "Раздел"
+section_widget_label_limit: "Количество материалов"
+section_widget_label_widget_name_as_title: "Использовать название виджета в качестве заголовка"
+section_widget_label_featured_comments: "Показывать выделенные комментарии"
+section_widget_label_author_picture: "Использовать фото автора в качестве картинки"
+
+admin_widgets_controls_new_section: "Новый виджет раздела"
+
+
+
+# User Interface
+
+materials_meta_comments: "Комментарии:"
+materials_meta_publicated_at: "Опубликовано:"
+materials_meta_tag_list: "Метки:"
+materials_meta_section: "Раздел:"
+materials_meta_rating: "Рейтинг:"
+
+materials_index_header_with_parent: "{parent}: Материалы"
+materials_index_header_without_parent: "Все материалы"
+materials_index_articles_not_found: "По заданным критериям не найдено ни одного материала"
+materials_index_feed_link: "RSS-лента"
+materials_index_feed_description: "Краткое содержание в формате RSS"
+materials_index_feed_picture_format: "200x200"
+materials_index_feed_more: "Читать дальше &raquo;"
+
+materials_show_picture_format: "200x200"
+materials_show_related_header: "Еще на эту тему"
+materials_show_related_picture_format: "90x68"
+
+materials_preview_picture_format: "90x68"
+
+materials_left_column_shorties: "Новости"
+materials_left_column_articles: "Статьи"
+materials_left_column_article_picture_format: "90x68"
+
+# Статьи
+
+articles_index_header_with_parent: "{parent}: Статьи"
+articles_index_header_without_parent: "Все статьи"
+articles_index_materials_not_found: "По заданным критериям не найдено ни одной статьи"
+articles_index_feed_link: "RSS-лента статей"
+articles_index_feed_description: "Краткое содержание статей в формате RSS"
+articles_index_feed_picture_format: "200x200"
+
+articles_show_picture_format: "240x180"
+articles_show_related_picture_format: "90x68"
+
+articles_preview_picture_format: "120x90"
+
+
+# Галереи
+
+galleries_index_header_with_parent: "{parent}: Фотогалереи"
+galleries_index_header_without_parent: "Все фотогалереи"
+galleries_index_feed_link: "RSS-лента фотогалерей"
+galleries_index_feed_description: "Фотогалереи в формате RSS"
+galleries_index_feed_picture_format: "100x100"
+galleries_index_feed_more: "Смотреть фотографии &raquo;"
+galleries_index_materials_not_found: "По заданным критериям не найдено ни одной галереи"
+
+galleries_picture_preview_format: "120x190>"
+
+galleries_show_thumbnail_format: "120x90>"
+galleries_show_full_size_format: "410x>"
+galleries_show_related_picture_format: "90x68>"
+
+
+# Информационные блоки
+
+shorties_index_title: "Эксклюзивные новости в Челябинске, новости Челябинск"
+shorties_index_description: "Самые последние новости. Новости Челябинск"
+shorties_index_keywords: "Новости Челябинск, новости в Челябинске, новости Челябинска"
+shorties_index_header_with_parent: "{parent}: Новости"
+shorties_index_header_without_parent: "Новости Челябинска и Южного Урала"
+shorties_index_empty_set: "По заданным критериям не найдено ни одной новости"
+shorties_index_feed_description: "Новости в формате RSS"
+
+
+# Метки
+
+tags_cloud_header: "Метки"
+
+tags_show_articles_archive: "Архив"
+tags_show_galleries_header: "Фотогалерея"
+tags_show_shorties_archive: "Архив"
+tags_show_top_article_picture_format: "120x90"
+tags_show_article_picture_format: "120x90"
+
+# Разделы
+
+section_label_description: "Описание"
+section_label_articles_at_homepage: "Статей на главной странице"
+section_label_shorties_at_homepage: "Новостей на главной странице"
+section_label_articles_at_section: "Статей на странице раздела"
+section_label_shorties_at_section: "Новостей на странице раздела"
+
+sections_show_articles_archive: "Архив"
+sections_show_articles_feed: "RSS-лента статей раздела {name}"
+sections_show_galleries_header: "Фотогалерея"
+sections_show_shorties_archive: "Архив"
+sections_show_shorties_feed: "RSS-лента новостей раздела {name}"
+
+sections_show_article_picture_format: "90x68"
+sections_show_top_article_picture_format: "120x90"
+
+sections_gallery_picture_format: "238x"
+
+# Комментарии
+
+comments_most_commentable_header: "Лидер по откликам"
+
+# Газеты
+
+newspapers_by_date_article_picture_format: "120x90"
+
+# Поиск
+
+searches_document_types_article: "Статьи"
+searches_document_types_gallery: "Галереи"
+searches_document_types_shorty: "Новости"
+
+search_all_header: "Поиск по запросу \"{query}\""
+search_all_results_not_found: "По вашему запросу не найдено ни одного документа"
+
+# Статьи пользователей
+
+user_article_label_title: "Заголовок"
+user_article_label_content: "Текст"
+
+admin_user_articles_menu_link: "Статьи пользователей"
+
+admin_user_articles_controls_draft: "Черновики"
+admin_user_articles_controls_approved: "Одобренные"
+admin_user_articles_controls_featured: "Выделенные"
+admin_user_articles_controls_declined: "Запрещенные"
+admin_user_articles_controls_view: "Просмотр"
+admin_user_articles_controls_approve: "Разрешить"
+admin_user_articles_controls_feature: "Выделить"
+admin_user_articles_controls_decline: "Запретить"
+
+admin_user_articles_edit_header: "Редактирование статьи"
+admin_user_articles_edit_submit: "Сохранить"
+
+admin_user_articles_update_flash_success: "Параметры статьи успешно обновлены!"
+
+admin_user_articles_index_header: "Статьи пользователей"
+admin_user_articles_index_empty_set: "Список статей пуст"
+
+user_article_controls_edit: "Редактировать"
+user_article_controls_delete: "Удалить"
+user_article_controls_delete_confirm: "Вы действительно хотите удалить эту статью?"
+
+user_articles_new_header: "Новая статья"
+user_articles_new_submit: "Добавить"
+
+user_articles_create_flash_success: "Статья успешно добавлена!"
+
+user_articles_edit_header: "Редактирование статьи"
+user_articles_edit_submit: "Сохранить"
+
+user_articles_update_flash_success: "Параметры статьи успешно обновлены!"

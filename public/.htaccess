@@ -1,0 +1,30 @@
+          RewriteEngine On
+
+          RewriteCond %{REQUEST_METHOD} !^GET
+          RewriteRule .* - [L]
+          RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f
+          RewriteRule .* - [L]
+            RewriteCond %{DOCUMENT_ROOT}/shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_assets_public%{REQUEST_URI} -f
+            RewriteRule .* shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_assets_public%{REQUEST_URI} [L]
+            RewriteCond %{DOCUMENT_ROOT}/shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_sections_public%{REQUEST_URI} -f
+            RewriteRule .* shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_sections_public%{REQUEST_URI} [L]
+            RewriteCond %{DOCUMENT_ROOT}/shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_pictures_public%{REQUEST_URI} -f
+            RewriteRule .* shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_pictures_public%{REQUEST_URI} [L]
+            RewriteCond %{DOCUMENT_ROOT}/shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_tags_public%{REQUEST_URI} -f
+            RewriteRule .* shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_tags_public%{REQUEST_URI} [L]
+            RewriteCond %{DOCUMENT_ROOT}/shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_static_pages_public%{REQUEST_URI} -f
+            RewriteRule .* shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_static_pages_public%{REQUEST_URI} [L]
+            RewriteCond %{DOCUMENT_ROOT}/shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_comments_public%{REQUEST_URI} -f
+            RewriteRule .* shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_comments_public%{REQUEST_URI} [L]
+            RewriteCond %{DOCUMENT_ROOT}/shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_blogs_public%{REQUEST_URI} -f
+            RewriteRule .* shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_blogs_public%{REQUEST_URI} [L]
+            RewriteCond %{DOCUMENT_ROOT}/shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_commons_public%{REQUEST_URI} -f
+            RewriteRule .* shared_assets/_var_projects_mediazavod_publishing_current_vendor_plugins_commons_public%{REQUEST_URI} [L]
+          RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_URI}.html -f
+          RewriteRule .* cache/%{REQUEST_URI}.html [L]
+
+          RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_URI}/index.html -f
+          RewriteRule .* cache/%{REQUEST_URI}/index.html [L]
+
+          RewriteCond %{DOCUMENT_ROOT}/cache/%{REQUEST_URI} -f
+          RewriteRule .* cache/%{REQUEST_URI} [L]

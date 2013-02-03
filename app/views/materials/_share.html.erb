@@ -1,0 +1,52 @@
+<div class="share">
+  <div class="header">Поделитесь ссылкой:</div>
+
+  <div class="button">
+    <!-- Put this script tag to the <head> of your page -->
+    <script type="text/javascript" src="http://vkontakte.ru/js/api/share.js?5" charset="windows-1251"></script>
+
+    <!-- Put this script tag to the place, where the Share button will be -->
+    <script type="text/javascript"><!--
+    document.write(VK.Share.button(false,{type: "link", text: "ВКонтакте"}));
+    --></script>
+  </div>
+
+  <div class="button">
+    <a class="mrc__share" type="micro" href="http://connect.mail.ru/share" rel="nofollow">Мой Мир</a>
+    <script src="http://cdn.connect.mail.ru/js/share/2/share.js" type="text/javascript" charset="UTF-8"></script>
+  </div>
+
+  <div class="button">
+    <a name="fb_share" type="icon_link" href="http://www.facebook.com/sharer.php">Facebook</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+  </div>
+
+  <div class="button">
+    <!--Memori Button Start//-->
+    <a href="http://memori.ru/link/" rel="nofollow" title="Запомнить эту страницу!" onclick="location.href='http://memori.ru/link/?sm=1&u_data[url]='+encodeURIComponent(document.location.href)+'&u_data[name]='+encodeURIComponent(document.title);return false;"><img src="http://memori.ru/images/memori_button.gif" width="80" height="15" title="Запомнить эту страницу!" style="border:0;" alt="" /></a>
+    <!-- End//-->
+  </div>
+
+  <div class="button">
+    <%= link_to("Twitter", "http://twitter.com/home?status=%s" %
+          CGI.escape(material.excerpt.to_s.split(".").first + " " + polymorphic_url(material)),
+	  :rel => "nofollow"
+        ) %>
+  </div>
+  
+  <div class="button">
+    <div style="display:none;">
+      <div id="livejournal_code">
+        <% lj_code = capture do %><div style="margin: 10px 0 10px 10px; padding-left: 10px; border-left: 2px solid #e0e0e0;"><%= link_to(material.name, polymorphic_url(material)) %><div style="margin-top: 10px;"><%= material.excerpt %></div></div><% end %>
+	
+        <p><b>Код для блога:</b></p>
+	
+	<div><textarea cols="50" rows="5"><%= lj_code %></textarea></div>
+	
+	<p><b>Предпросмотр</b></p>
+	
+	<%= lj_code %>
+      </div>
+    </div>
+    <%= link_to_function("LiveJournal", "jQuery.facebox({div: '#livejournal_code'})") %>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="panel v1" id="most_commentable">
+  <div class="title">Лидеры по откликам</div>
+    <div class="content">
+      <% commentables.each do |commentable| %>
+        <div class="commentable">
+          <div class="count"><%= commentable.comment_summary.total_count %> </div>
+          <%= link_to(commentable.name, commentable) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<% panel ""[:blogs_index_header], :main => true do %>
+  <div id="blog_list">
+    <% @users.each do |user| %>
+      <div class="blog">
+        <div class="avatar">
+          <%= link_to(user_info(user, :remote_format => :avatar), blog_path(user)) %>
+        </div>
+
+        <%= link_to(user_info(user), blog_path(user), :class => :name) %>
+
+        <div class="posts">
+          <% user.blog_posts.latest.visible.all(:limit => 3).each do |post| %>
+            <div class="post">
+              <%= link_to(h(post.title), [post.author, post]) %>
+              <span class="created_at"><%= post.created_at.strftime(""[:common_format_datetime]) %></span>
+            </div>
+          <% end %>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= will_paginate @users %>
+<% end %>

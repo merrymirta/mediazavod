@@ -1,0 +1,5 @@
+#blog_post_list td.controls {width: 100px;}
+
+#blog_post_list .title {font-weight: bold;}
+#blog_post_list .created_at {color: #d0d0d0; font-size: 12px;}
+#blog_post_list .excerpt {margin: 5px 0; padding: 0 10px; border: 1px dashed #e0e0e0;}

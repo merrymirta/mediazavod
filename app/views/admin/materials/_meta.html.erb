@@ -1,0 +1,19 @@
+<% fieldset :fieldset => :metadata do |f| %>
+  <%= f.field(
+        material_translate(material.class, :meta_section),
+        material.section.name,
+        :class => :section
+      ) %>
+
+  <%= f.field(
+        material_translate(material.class, :meta_state),
+        content_tag(:span, ""["admin_materials_state_#{material.state}".to_sym], :class => material.state),
+        :class => :state
+      ) %>
+
+  <%= f.field(
+        material_translate(material.class, :meta_publicated_at),
+        datetime(material.publicated_at),
+        :class => :publicated_at
+      ) if material.publicated? %>
+<% end %>

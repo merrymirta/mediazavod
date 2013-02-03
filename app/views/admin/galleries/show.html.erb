@@ -1,0 +1,35 @@
+<%
+  metadata.merge(
+    :title        => [@material.name, @material.tag_list.to_s],
+    :description  => [@material.name, @material.tag_list.to_s],
+    :keywords     => [@material.name, @material.tag_list.to_s]
+  )
+%>
+
+<% panel(@material.name, :class => :gallery, :main => true) do %>
+  <%= display_controls(@material) %>
+
+  <% object_restrict_to(@type, :manage) do %>
+    <% if @material.publicated? %>
+      <%= render :partial => "materials/publication", :locals => {:material => @material} %>
+    <% end %>
+  <% end %>
+
+  <div class="text">
+    <%= filter_content(@material.excerpt, @material.filter) %>
+  </div>
+
+  <%= pictures_for(@material,
+        :format => :widget,
+        :thumbnail_format => material_translate(@type, :show_thumbnail_format),
+        :full_size_format => material_translate(@type, :show_full_size_format)
+      ) %>
+
+  <%= material_meta(@material, :comments => false) %>
+<% end %>
+
+<% if @material.allow_comments? %>
+  <%= comments_for @material %>
+<% end %>
+
+<%= related_materials_for(@material) %>

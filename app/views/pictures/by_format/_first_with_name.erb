@@ -1,0 +1,18 @@
+<% cache("#{container.cache_key}/pictures/first/#{options}") do %>
+  <% if picture = container.pictures.first %>
+    <div class="picture_widget">
+      <div class="full_size">
+        <div class="container">
+          <% unless picture.name.blank? %>
+            <h2><%= picture.name %></h2>
+          <% end %>
+          <%= link_to(image_tag(picture.image.url(options[:thumbnail_format]), :alt => container.name),
+                    picture.image.url,
+                    :rel => "prettyPhoto[pp_gal]",
+                    :title => picture.name
+          )%>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

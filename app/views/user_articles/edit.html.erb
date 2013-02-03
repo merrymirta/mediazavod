@@ -1,0 +1,7 @@
+<% panel ""[:user_articles_edit_header], :main => true do %>
+  <% form_for @article do |form| %>
+    <%= render :partial => "form_fields", :locals => {:form => form} %>
+
+    <%= submit_tag ""[:user_articles_edit_submit] %>
+  <% end %>
+<% end %>

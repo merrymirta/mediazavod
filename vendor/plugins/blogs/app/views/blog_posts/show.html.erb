@@ -1,0 +1,23 @@
+<%= render :partial => "controls", :locals => {:post => @post} %>
+
+<% panel h(@post.title), :main => true do %>
+  <div id="blog_post">
+    <div class="created_at"><%= @post.created_at.strftime(""[:common_format_datetime]) %></div>
+
+    <%= pictures_for(@post,
+          @post.pictures.size > 1 ? {
+            :format => :widget,
+            :full_size_format => "320x320>",
+            :thumbnail_format => "60x45",
+            :full_size_first => true
+          } : {
+            :format => :first_with_name,
+            :thumbnail_format => "320x320>"
+          }
+        ) %>
+
+    <div class="content"><%= filter_content(@post.content, Idfix::Markup::TEXTILE) %></div>
+
+    <%= comments_for(@post) %>
+  </div>
+<% end %>

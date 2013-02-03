@@ -1,0 +1,31 @@
+<%
+  header = (parents.any? ? material_translate(@type, :index_header_with_parent, parents.last.name) : material_translate(@type, :index_header_without_parent))
+  
+  metadata.merge( :title => header )
+%>
+
+<% admin_panel(header, :class => @type.to_s.tableize, :main => true) do %>
+  <% if @materials.any? %>
+    <%= will_paginate @materials %>
+
+    <table id="material_list" cellspacing="0" cellpadding="0">
+      <% @materials.each do |material| %>
+        <tr>
+          <td>
+            <%= render(
+                  :partial  => "admin/#{@type.to_s.tableize}/#{@type.to_s.underscore}",
+                  :locals   => { @type.to_s.underscore.to_sym => material }
+                ) %>
+          </td>
+          <td class="controls"><%= material_controls(material) %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= will_paginate @materials %>
+  <% else %>
+    <div class="empty_set">
+      <%= material_translate(@type, :index_empty_set) %>
+    </div>
+  <% end %>
+<% end %>

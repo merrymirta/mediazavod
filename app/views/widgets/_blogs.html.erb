@@ -1,0 +1,7 @@
+<% if BlogPost.by_state([:approved, :featured]).count > 0 %>
+  <div class="blogs block">
+    <div class="h s1">Блоги</div>
+
+    <%= latest_blog_posts %>
+  </div>
+<% end %>

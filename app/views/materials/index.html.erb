@@ -1,0 +1,73 @@
+<%
+  header = (parents.any? ? material_translate(@type, :index_header_with_parent, parents.last.name) : material_translate(@type, :index_header_without_parent))
+  
+  title = material_translate(@type, :index_title)
+  metadata.title = [title.blank? ? header : title]
+
+  description = material_translate(@type, :index_description)
+  metadata.description = [description.blank? ? header : description]
+
+  keywords = material_translate(@type, :index_keywords)
+  metadata.keywords = [keywords.blank? ? header : keywords]
+
+  metadata.merge(
+    :feeds        => {
+      :name   => material_translate(@type, :index_feed_link),
+      :url    => url_for(params.merge(:format => :rss, :date => nil, :page => nil))
+    }
+  )
+%>
+
+<% panel(header, :class => @type.to_s.tableize, :main => true) do %>
+  <% if @materials.any? %>
+    <% @materials.each do |material| %>
+      <%= material_preview(material) %>
+    <% end %>
+
+    <%= will_paginate @materials %>
+  <% else %>
+    <div class="empty_set">
+      <%= material_translate(@type, :index_materials_not_found) %>
+    </div>
+  <% end %>
+
+<div class="yad clearfix">
+  <!-- Яндекс.Директ -->
+  <script type="text/javascript">
+  //<![CDATA[
+  yandex_partner_id = 57701;
+  yandex_site_bg_color = 'FFFFFF';
+  yandex_site_charset = 'windows-1251';
+  yandex_ad_format = 'direct';
+  yandex_font_size = 1;
+  yandex_direct_type = 'flat';
+  yandex_direct_border_type = 'ad';
+  yandex_direct_limit = 4;
+  yandex_direct_header_bg_color = 'FEEAC7';
+  yandex_direct_border_color = 'FBE5C0';
+  yandex_direct_title_color = '0000CC';
+  yandex_direct_url_color = '0000CC';
+  yandex_direct_all_color = '0000CC';
+  yandex_direct_text_color = '000000';
+  yandex_direct_hover_color = '0066FF';
+  yandex_direct_favicon = true;
+  document.write('<sc'+'ript type="text/javascript" src="http://an.yandex.ru/system/context.js"></sc'+'ript>');
+  //]]>
+  </script>
+</div>
+<% end %>
+
+<% content_for :right_column do %>
+  <%= material_tag_cloud(parents.last, @type) %>
+
+  <%= calendar_block(
+        :active_days    => @type.active_days_filtered(filter_options),
+        :binding_url    => url_for(:date => ":date"),
+        :selected_date  => filter_options[:date]
+      ) %>
+
+  <%= link_to( material_translate(@type, :index_feed_link), url_for(params.merge(:format => :rss, :date => nil, :page => nil)),
+        :title => material_translate(@type, :index_feed_link),
+        :class => :feed
+      ) %>
+<% end %>

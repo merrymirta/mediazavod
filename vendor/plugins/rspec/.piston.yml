@@ -1,0 +1,8 @@
+--- 
+format: 1
+handler: 
+  commit: 5fd78361039d069449f91dc506ae2bf3d9d616de
+  branch: HEAD
+lock: 
+repository_url: git://github.com/dchelimsky/rspec.git
+repository_class: Piston::Git::Repository

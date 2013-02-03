@@ -1,0 +1,11 @@
+<% div_for gallery do %>
+  <%= link_to(gallery.name, gallery, :class => :name) %>
+  
+  <%= link_to(
+        pictures_for(gallery, 
+          :format => :first, 
+          :thumbnail_format => ""[:sections_gallery_picture_format]
+        ), 
+        gallery
+      ) %>
+<% end %>

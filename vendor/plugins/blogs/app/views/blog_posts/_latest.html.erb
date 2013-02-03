@@ -1,0 +1,22 @@
+<% if posts.any? %>
+  <div class="blog_posts" id="latest_blog_posts">
+    <% posts.each do |post| %>
+      <div class="blog_post">
+        <%= link_to(user_info(post.author, :remote_format => :small_avatar), blog_path(post.author)) %>
+
+        <div class="author"><%= link_to(user_info(post.author), blog_path(post.author)) %></div>
+        <div class="title"><%= link_to(h(post.title), [post.author, post]) %></div>
+        <div class="metadata">
+          <% if post.comments.summary.total_count > 0  %>
+            <%= link_to(post.comments.summary.total_count, user_blog_posts_path(post.author, :anchor => :comments), :class => :comments) %>
+          <% end %>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+    <% end %>
+
+    <div class="more">
+      <%= link_to(""[:blog_posts_latest_more], blogs_path) %>
+    </div>
+  </div>
+<% end %>

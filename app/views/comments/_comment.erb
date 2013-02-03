@@ -1,0 +1,37 @@
+<% div_for comment, :class => "level#{ options[:level] } #{options[:level] == 0 ? (comment.featured? ? :gray : :white) : ""}" do %>
+  <a name="<%= dom_id(comment) %>"></a>
+  
+  <div class="text">
+    <div class="top">
+      <div class="bottom">
+        <%= filter_content(comment.text, Idfix::Markup::TEXTILE) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="badge">
+    <% if comment.anonymous? %>
+      <div class="user anonymous">
+        <span class="name">
+          <%= comment.user_site.blank? ? comment.user_name : link_to(comment.user_name, comment.user_site) %>
+        </span>
+      </div>
+    <% else %>
+      <%= user_info comment.user, :remote_format => :avatar_and_name %>
+    <% end %>
+
+    <div class="date"><%= comment.created_at.strftime(""[:common_format_datetime]) %></div>
+  </div>
+
+  <% if options[:reply] %>
+    <div class="reply">
+      <%= link_to_remote_with_spinner(""[:comments_controls_reply],
+            {
+              :url => [:reply, comment.commentable, comment],
+              :method => :get
+            }
+          ) %>
+    </div>
+    <div class="reply_form"></div>
+  <% end %>
+<% end %>

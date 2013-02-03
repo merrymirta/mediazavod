@@ -1,0 +1,19 @@
+<% metadata.merge(:stylesheets => "admin/user_articles") %>
+
+<% content_for :sidebar_menu do %>
+  <% if object_permit?(UserArticle, :manage) %>
+    <% %w{draft approved featured declined}.each do |state| %>
+      <%= admin_menu_item(
+            link_to(""["admin_user_articles_controls_#{state}".to_sym],
+              admin_user_articles_path(:state => state),
+              :class => state
+            ),
+            (params[:state] || "pending") == state.to_s
+          ) %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% render :layout => "layouts/admin/application" do %>
+  <%= yield %>
+<% end %>

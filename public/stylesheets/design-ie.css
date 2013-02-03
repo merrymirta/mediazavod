@@ -1,0 +1,44 @@
+/*Snaked*/
+body {background: url(/images/design/body_bg.gif) repeat-x; background-attachment: fixed;}
+
+#options img{margin-top:2px;}
+#top_nav .top, #top_nav .top div{font-size:0; }
+#left .top .articles{width:260px; }
+#left.section .top .top_article .text{ height:150px;}
+
+#left .main_part .articles{width:375px;}
+#left .articles .article .text{height:80px;}
+#autors .autors .text{height:70px;}
+#main .panel.v2 .content{height:75px;}
+#main .panel.v2 .picture{font-size:0px;}
+#most_commentable .commentable{height:20px;}
+#general_table .cinema .text{height:140px;}
+#left .add_your_news a{ height:30px;}
+
+#comments .comment{border:1px solid #FFF;}
+#comments .comment.level0 .text,
+  #comments .comment.level0 .text .bottom,
+  #comments .comment.level0 .top{height:50px;}
+
+#table_top_gallery .picture_widget .full_size .container{width:auto;}
+
+#last_gallery{width:655px;}
+
+#comments .comment .text {width:504px;}
+#comments .comment.level1 .text {width:479px;}
+#comments .comment.level2 .text {margin-left:12px;width:454px;}
+#comments .comment.level3 .text {margin-left:25px; width:429px;}
+#comments .comment.level4 .text {margin-left:37px; width:404px;}
+#comments .comment.level5 .text {margin-left:50px; width:379px;}
+#comments .comment.level6 .text {margin-left:62px; width:354px;}
+#comments .comment.level7 .text {margin-left:75px; width:329px;}
+#comments .comment.level8 .text {margin-left:87px; width:304px;}
+#comments .comment.level9 .text {margin-left:100px; width:279px;}
+
+#left .top_article{height:100px;}
+.calendar .dp-nav-next{ right:33px;}
+.calendar .dp-nav-prev{ left:15px; }
+
+#ring {position: absolute; top: expression(eval(document.body.scrollTop + document.body.clientHeight - 40) + "px"); left: 0;}
+
+#main_subscription ul {width: 180px; margin: 15px 0 0 -80px;}

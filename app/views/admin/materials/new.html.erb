@@ -1,0 +1,9 @@
+<% metadata.merge(:title => material_translate(@type, :new_header)) %>
+
+<% panel material_translate(@type, :new_header), :main => true do %>
+  <% form_for([:admin, @material], :html => {:multupart => true}) do |form|%>
+    <%= render :partial => "admin/#{@type.to_s.tableize}/form_fields", :locals => {:form => form} %>
+        
+    <%= submit_tag material_translate(@type, :new_submit) %>
+  <% end %>
+<% end %>

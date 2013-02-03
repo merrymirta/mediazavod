@@ -1,0 +1,3 @@
+<% ssi_if_format :name_and_link do %>
+  <%= link_to(@material.name, polymorphic_url(@material), :class => :shorty) %>
+<% end %>

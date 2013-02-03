@@ -1,0 +1,80 @@
+<div id="header">
+  <div class="top">
+    <div id="date">
+      <%= header_date %><br /><br />
+      <a onclick="addBookmark() || alert('Add to Bookmarks')" href="#" target="_top" class="bookmark">Добавить в закладки</a>
+    </div>
+
+    <div class="widgets">
+      <%= currency_widget %>
+      <%#= weather_widget %>
+    </div>
+
+    <%= render :partial => "layouts/search" %>
+
+    <div id="login_block">
+      <%= user_info_or_login_form %>
+    </div>
+  </div>
+  <div class="bottom">
+    <div id="logo">
+      <% if yield(:header_logo).blank? %>
+        <a href="<%= Rails.configuration.idfix.services[:publishing][:domain] %>">
+          <img src="<%= Rails.configuration.idfix.services[:publishing][:domain] %>/images/design/logo.gif" width="230" height="66" alt="Медиа Завод" border="0" />
+        </a>
+      <% else %>
+        <%= yield(:header_logo) %>
+      <% end %>
+    </div>
+    <div id="navigation">
+      <div id="units">
+        <% if yield(:header_units).blank? %>
+          <%= link_to("Челябинский рабочий", newspaper_url(:rabochy)) %>
+          <%= link_to("Урожайная газета", newspaper_url(:ug)) %>
+        <% else %>
+          <%= yield(:header_units) %>
+        <% end %>
+        <%= link_to("Тумба-online", Rails.configuration.idfix.services[:classifieds][:domain]) %>
+      </div>
+
+      <div id="options">
+        <%= link_to("Сервисы", "#", :onmouseover => "jQuery('#services').addClass('over')", :onmouseout => "jQuery('#services').removeClass('over')") %>
+        <img src="<%= Rails.configuration.idfix.services[:publishing][:domain] %>/images/design/orange_bull.gif" width="6" height="6" border="0" alt=""/>
+        <%= link_to("Реклама", Rails.configuration.idfix.services[:publishing][:domain] + "/info/advertising") %>
+
+        <div id="services" onmouseover="jQuery('#services').addClass('over')" onmouseout="jQuery('#services').removeClass('over')">
+          <%= link_to("Блоги", blogs_url) %>
+          <%= link_to("Фитнес-клуб", section_url("fitness_club")) %>
+          <%= link_to("Политклуб", section_url("politclub")) %>
+          <%= link_to("Online-конференция", section_url("conference")) %>
+          <%= link_to("Спецпроект", section_url("specproject")) %>
+          <%= link_to("Игры", Rails.configuration.idfix.services[:publishing][:domain] + "/info/games") %>
+          <%= link_to("Анекдоты", Rails.configuration.idfix.services[:publishing][:domain] + "/info/anecdotes") %>
+          <%= link_to("Гороскопы", Rails.configuration.idfix.services[:publishing][:domain] + "/horoscopes") %>
+          <%= link_to("Конкурсы", Rails.configuration.idfix.services[:publishing][:domain] + "/info/contests") %>
+          <%= link_to("RSS", Rails.configuration.idfix.services[:publishing][:domain] + "/info/rss") %>
+        </div>
+      </div>
+      <div id="top_nav">
+        <div class="top"><div></div></div>
+        <ul>
+          <li><%= link_to("Общество", section_url("society"))%></li>
+          <li><%= link_to("Происшествия", section_url("incidents"))%></li>
+          <li><%= link_to("Политика", section_url("politics"))%></li>
+          <li><%= link_to("Экономика", section_url("economy"))%></li>
+          <li><%= link_to("Отдых", section_url("entertainment"))%></li>
+          <li><%= link_to("Спорт", section_url("sports"))%></li>
+          <li><%= link_to("Качество жизни", section_url("life"))%></li>
+          <li><%= link_to("Тенденции", section_url("tendencies"))%></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><%= banner_place(:header_bottom_1) %></td>
+    <td><%= banner_place(:header_bottom_2) %></td>
+  </tr>
+</table>

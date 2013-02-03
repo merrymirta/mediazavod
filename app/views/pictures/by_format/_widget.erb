@@ -1,0 +1,34 @@
+<% if container.pictures.size > 0 %>
+  <%= javascript_include_tag "idfix.picture_widget.js" %>
+
+  <% content_tag(:div, :id => dom_id(container, :pictures), :class => :picture_widget) do %>
+    <%= link_to(image_tag(container.pictures.first.image.url(options[:full_size_format]), :alt => container.name),
+              container.pictures.first.image.url,
+              :rel => "prettyPhoto[pp_gal]",
+              :title => container.pictures.first.name
+    )%>
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <% container.pictures[1 .. 5].each do |picture| %>
+          <% content_tag_for(:td, picture, :title => picture.name) do %>
+              <%= link_to(image_tag(picture.image.url(options[:thumbnail_format]), :class  => :thumbnail, :alt => container.name), 
+                    picture.image.url,
+                    :rel => "prettyPhoto[pp_gal]",
+                    :title => picture.name
+              )%>
+          <% end %>
+        <% end %>
+      </tr>
+    </table>
+    <% if pictures = container.pictures[6 .. -1] and !pictures.empty? %>
+      <% pictures.each do |picture| %>
+        <%= link_to(image_tag(picture.image.url(options[:thumbnail_format]), :class  => :thumbnail, :alt => container.name), 
+              picture.image.url,
+              :rel => "prettyPhoto[pp_gal]",
+              :title => picture.name,
+              :style => "display:none;"
+        )%>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
